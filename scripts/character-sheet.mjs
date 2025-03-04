@@ -1,4 +1,4 @@
-import { LINK_STRENGTHS_ICONS, STATS } from "../interstitial.mjs";
+import { LINK_STRENGTHS_ICONS, ROLL_MODIFIERS, STATS } from "../interstitial.mjs";
 
 export class CharacterActorSheet extends ActorSheet {
 
@@ -38,7 +38,10 @@ export class CharacterActorSheet extends ActorSheet {
       }
     });
 
-    context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1); // Build harm array, starting at 1
+    // Build harm array, starting at 1
+    context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1);
+    // Establish roll modes for stat buttons
+    context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj),{});
 
     return context;
   }

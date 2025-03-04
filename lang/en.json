@@ -19,6 +19,11 @@
       "locked": "Locked Link",
       "bonded": "Bonded Link"
     },
+    "roll_modifier": {
+      "standard": "Standard",
+      "advantage": "Advantage",
+      "disadvantage": "Disadvantage"
+    },
     "label": {
       "stat": "Stat:",
       "character_sheet": {
@@ -26,10 +31,11 @@
         "pronouns": "Pronouns",
         "pronouns_ph": "Amateur nouns are acceptable too",
         "harm": "Harm",
-        "hold": "Hold",
         "links_stats": "Links & Stats",
         "story": "Their Story",
         "adventures": "Their Adventures",
+        "hold": "Hold",
+        "roll_modifier": "Roll modifier",
         "link_spend": "Spend Link!",
         "link_spent": "Spent",
         "link_spent_remove": "Spent, remove after re-rolling",

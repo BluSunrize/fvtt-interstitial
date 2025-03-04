@@ -19,6 +19,11 @@ export const LINK_STRENGTHS_ICONS = {
 	"locked": "lock",
 	"bonded": "handshake-angle",
 };
+export const ROLL_MODIFIERS = {
+	'standard': '2d6',
+	'advantage': '3d6kh2',
+	'disadvantage': '3d6kl2',
+};
 
 
 /* -------------------------------------------- */

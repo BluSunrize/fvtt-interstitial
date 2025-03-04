@@ -1,4 +1,4 @@
-import { LINK_STRENGTHS, STATS } from "../interstitial.mjs";
+import { LINK_STRENGTHS, ROLL_MODIFIERS, STATS } from "../interstitial.mjs";
 
 const { BooleanField, HTMLField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
@@ -17,6 +17,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         value: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
       }),
       hold: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+      roll_modifier: new StringField({
+        required: true,
+        blank: false,
+        options: Object.keys(ROLL_MODIFIERS),
+        initial: Object.keys(ROLL_MODIFIERS)[0],
+      }),
       story: new SchemaField({
         homeworld: new StringField({ required: true, blank: true }),
         background: new HTMLField({ required: false, blank: true }),
@@ -33,13 +39,13 @@ export class LinkDataModel extends foundry.abstract.TypeDataModel {
         required: true,
         blank: false,
         options: STATS,
-        initial: "light"
+        initial: STATS[0],
       }),
       strength: new StringField({
         required: true,
         blank: false,
         options: LINK_STRENGTHS,
-        initial: "standard"
+        initial: LINK_STRENGTHS[0],
       }),
       spent: new BooleanField({ initial: false }),
       story: new HTMLField({ required: false, blank: true })

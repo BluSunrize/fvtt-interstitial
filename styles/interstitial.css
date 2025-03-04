@@ -1,3 +1,7 @@
+.system-interstitial form.character section {
+    margin: 8px 0;
+}
+
 .system-interstitial .sheet.actor header {
     flex: none;
 }

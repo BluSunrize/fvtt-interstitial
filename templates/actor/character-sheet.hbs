@@ -21,8 +21,7 @@
                         <input type="checkbox" name="system.harm_clock.{{harm_val}}" {{checked (gte ../system.harm.value harm_val)}} />
                     {{/each}}
                 </div>
-                <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
-                <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
+                <div class="spacer flex2"></div>
             </div>
         </div>
     </header>
@@ -37,7 +36,17 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Links & Stats Tab --}}
-        <div class="tab links" data-group="primary" data-tab="links">
+        <div class="tab links flexcol" data-group="primary" data-tab="links">
+            <section class="roll_modifiers flexrow">
+                <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
+                <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
+                <span></span>
+                <label for="system.roll_modifier" class="resource-label flex1">{{localize "interstitial.label.character_sheet.roll_modifier"}}:</label>
+                <select name="system.roll_modifier">
+                    {{selectOptions system.roll_modifiers selected=system.roll_modifier localize=true}}
+                </select>
+            </section>
+            <br>
             <section class="flexrow">
                 {{#each system.statsAndLinks as |stat key|}}
                 <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
@@ -45,7 +54,7 @@
                         <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.svg" height="50" width="50"/>
                         <div class="flexcol">
                             <label class="resource-label flexlarge">{{localize (concat "interstitial.stat." key)}}</label>
-                            <span class="stat" data-roll="2d6 + @stats.{{key}}" data-label="{{localize (concat "interstitial.stat." key)}}">
+                            <span class="stat" data-roll="@base_dice + @stats.{{key}}" data-label="{{localize (concat "interstitial.stat." key)}}">
                                 {{numberFormat stat.value decimals=0 sign=true}}
                             </span>
                         </div>
