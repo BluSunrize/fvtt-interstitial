@@ -17,7 +17,7 @@
 }
 
 .system-interstitial .sheet.actor .stat-column .stat-button {
-    background: var(--color-text-light-heading);
+    background: var(--color-light-2);
     border: 1px solid var(--color-border-dark-tertiary);
     border-radius: 3px;
     margin: auto;
@@ -26,14 +26,14 @@
     max-height: 50px
 }
 
-.system-interstitial .sheet.actor .stat-column .stat-button .stat-img,
-.system-interstitial .sheet.actor .stat-column .link-list .link-img {
+.system-interstitial .sheet.actor .stat-column .stat-button .stat-img {
     flex-grow: unset;
     margin-right: 5px;
+    border: none;
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list {
-    padding: 0;
+    padding: 0 5px;
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link {
@@ -41,12 +41,18 @@
     flex-grow: 0;
 }
 
+.system-interstitial .sheet.actor .stat-column .link-list .link-img {
+    flex-grow: unset;
+    margin-right: 5px;
+
+}
+
 .system-interstitial .sheet.actor .stat-column .link-list li.link .link-container {
     min-height: 50px;
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link.spent {
-    color:var(--color-text-dark-inactive);
+    color: var(--color-text-dark-inactive);
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link:not(.spent) a.spend-link {
