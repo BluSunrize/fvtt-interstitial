@@ -62,7 +62,9 @@
                         <li class="item flexrow link flex1 {{ifThen link.system.spent 'spent' ''}}" data-item-id="{{link._id}}">
                             <div class="flexcol flex1">
                                 <img class="link-img" src="{{link.img}}" title="{{link.name}}" height="30" width="30"/>
-                                <i class="link-strength fas fa-{{link.strength_icon}}" title="{{localize (concat "interstitial.link_strength." link.system.strength)}}"></i>
+                                {{#if link.strength_icon}}
+                                    <i class="link-strength fas fa-{{link.strength_icon}}" title="{{localize (concat "interstitial.link_strength." link.system.strength)}}"></i>
+                                {{/if}}
                             </div>
                             <div class="flexcol flex3">
                                 <label class="link-name">{{link.name}}</label>

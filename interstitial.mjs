@@ -15,7 +15,7 @@ export const LINK_STRENGTHS = [
 	"bonded",
 ];
 export const LINK_STRENGTHS_ICONS = {
-	"standard": "link",
+	"standard": null,
 	"locked": "lock",
 	"bonded": "handshake-angle",
 };
