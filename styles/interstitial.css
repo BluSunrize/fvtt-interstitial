@@ -37,9 +37,12 @@
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link {
-    min-height: 50px;
     align-content: center;
     flex-grow: 0;
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.link .link-container {
+    min-height: 50px;
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link.spent {
