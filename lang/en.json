@@ -1,0 +1,48 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Character"
+    },
+    "Item": {
+      "link": "Link"
+    }
+  },
+  "interstitial": {
+    "stat": {
+      "light": "Light",
+      "dark": "Dark",
+      "mastery": "Mastery",
+      "heart": "Heart"
+    },
+    "link_strength": {
+      "standard": "Standard Link",
+      "locked": "Locked Link",
+      "bonded": "Bonded Link"
+    },
+    "label": {
+      "stat": "Stat:",
+      "character_sheet": {
+        "playbook": "Playbook",
+        "pronouns": "Pronouns",
+        "pronouns_ph": "Amateur nouns are acceptable too",
+        "harm": "Harm",
+        "hold": "Hold",
+        "links_stats": "Links & Stats",
+        "story": "Their Story",
+        "adventures": "Their Adventures",
+        "btn_link_spend": "Spend Link!",
+        "btn_link_spent": "Link is spent",
+        "homeworld": "Homeworld",
+        "homeworld_ph": "The world from which they came",
+        "background": "Backstory",
+        "adventure": "Adventures with the Party"
+        
+      },
+      "link_sheet": {
+        "strength": "Link Strength",
+        "story": "The Story behind the Link"
+      }
+    }
+  }
+
+}

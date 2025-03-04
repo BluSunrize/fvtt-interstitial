@@ -1,0 +1,52 @@
+{
+  "id": "interstitial",
+  "title": "Interstitial 2E - Our Worlds Connected",
+  "description": "Running Interstitial 2nd Edition in Foundry VTT!",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "BluSunrize",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "interstitial.mjs"
+  ],
+  "styles": [
+    "styles/interstitial.css"
+  ],
+  "scripts": [
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {}
+    },
+    "Item": {
+      "link": {}
+    }
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "socket": true,
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "changelog": "",
+  "bugs": "",
+  "flags": {
+  }
+}

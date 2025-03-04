@@ -1,0 +1,99 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img flex1" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields flexcol flex3">
+            <h1 class="charname flexrow flex0"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="flexrow flex1">
+                <label for="system.playbook" class="resource-label flex1">{{localize "interstitial.label.character_sheet.playbook"}}:</label>
+                <input name="system.playbook" class="flex3" type="text" value="{{system.playbook}}" placeholder="{{localize "interstitial.label.character_sheet.playbook"}}" />
+            </div>
+            <div class="flexrow flex1">
+                <label for="system.pronouns" class="resource-label flex1">{{localize "interstitial.label.character_sheet.pronouns"}}:</label>
+                <input name="system.pronouns" class="flex3" type="text" value="{{system.pronouns}}" placeholder="{{localize "interstitial.label.character_sheet.pronouns_ph"}}" />
+            </div>
+            <div class="flexrow flex1">
+                <label for="system.harm.value" class="resource-label flex1">{{localize "interstitial.label.character_sheet.harm"}}:</label>
+                <div class="harm-clock flexrow flex1">
+                    {{#each system.harm_options as |harm_val|}}
+                        <input type="checkbox" name="system.harm_clock.{{harm_val}}" {{checked (gte ../system.harm.value harm_val)}} />
+                    {{/each}}
+                </div>
+                <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
+                <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <h3><a class="item" data-tab="links">{{localize "interstitial.label.character_sheet.links_stats"}}</a></h3>
+        <h3><a class="item" data-tab="story">{{localize "interstitial.label.character_sheet.story"}}</a></h3>
+        <h3><a class="item" data-tab="adventure">{{localize "interstitial.label.character_sheet.adventure"}}</a></h3>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Links & Stats Tab --}}
+        <div class="tab links" data-group="primary" data-tab="links">
+            <section class="flexrow">
+                {{#each system.statsAndLinks as |stat key|}}
+                <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
+                    <div class="stat-button flexrow flex-group-center rollable">
+                        <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.png" height="50" width="50"/>
+                        <div class="flexcol">
+                            <label class="resource-label flexlarge">{{localize (concat "interstitial.stat." key)}}</label>
+                            <span class="stat" data-roll="2d6 + @stats.{{key}}" data-label="{{localize (concat "interstitial.stat." key)}}">
+                                {{numberFormat stat.value decimals=0 sign=true}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <ul class="link-list flexcol flex-group-center">
+                        <li class="item flexrow flex0 new-link">
+                            <div class="item-controls">
+                                <a class="item-control item-create" title="{{localize "DOCUMENT.New" type="link"}}" data-type="link" data-stat="{{key}}"><i class='fas fa-plus'></i>{{localize 'DOCUMENT.New' type="link"}}</a>
+                            </div>
+                        </li>
+
+                        {{#each stat.links as |link list_key|}}
+                        <li class="item flexrow link flex1 {{ifThen link.system.spent 'spent' ''}}" data-item-id="{{link._id}}">
+                            <div class="flexcol flex1">
+                                <img class="link-img" src="{{link.img}}" title="{{link.name}}" height="30" width="30"/>
+                                <i class="link-strength fas fa-{{link.strength_icon}}" title="{{localize (concat "interstitial.link_strength." link.system.strength)}}"></i>
+                            </div>
+                            <div class="flexcol flex3">
+                                <label class="link-name">{{link.name}}</label>
+                                <a class="spend-link">{{localize (concat "interstitial.label.character_sheet.btn_link_" (ifThen link.system.spent 'spent' 'spend'))}}</a>
+                            </div>
+                            <div class="item-controls flex1">
+                                <a class="item-control item-edit" title="{{localize "DOCUMENT.Edit" type="link"}}"><i class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" title="{{localize "DOCUMENT.Delete" type="link"}}"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/each}}
+            </section>
+        </div>
+        {{!-- Their Story Tab --}}
+        <div class="tab story" data-group="primary" data-tab="story">
+            <div class="flexrow">
+                <label for="system.story.homeworld" class="resource-label">{{localize "interstitial.label.character_sheet.homeworld"}}:</label>
+                <input name="system.story.homeworld" type="text" value="{{system.story.background}}" placeholder="{{localize "interstitial.label.character_sheet.homeworld_ph"}}" />
+            </div>
+            <h2> <label class="resource-label flexlarge" for="system.story.background">{{localize "interstitial.label.character_sheet.background"}}</label></h2>
+            {{editor system.story.background target="system.story.background" owner=owner editable=editable}}
+        </div>
+        {{!-- Adventures with the Party Tab --}}
+        <div class="tab adventure" data-group="primary" data-tab="adventure">
+            <h2><label class="resource-label flexlarge" for="system.story.adventure">{{localize "interstitial.label.character_sheet.adventure"}}</label></h2>
+            {{editor system.story.adventure target="system.story.adventure" owner=owner editable=editable}}
+        </div>
+
+
+    </section>
+</form>

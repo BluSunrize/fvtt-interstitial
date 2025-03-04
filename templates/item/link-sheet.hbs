@@ -1,0 +1,31 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <section class="grid grid-2col">
+            <label for="system.spent" class="resource-label">Spent?</label>
+            <input type="checkbox" name="system.spent" {{checked system.spent}} />
+
+            <label for="system.stat" class="resource-label">{{localize "interstitial.label.stat"}}</label>
+            <select name="system.stat">
+                {{selectOptions system.stat_options selected=system.stat localize=true}}
+            </select>
+
+            <label for="system.strength" class="resource-label">{{localize "interstitial.label.link_sheet.strength"}}</label>
+            <select name="system.strength">
+                {{selectOptions system.strength_options selected=system.strength localize=true}}
+            </select>
+        </section>
+
+        <label for="system.story" class="resource-label">{{localize "interstitial.label.link_sheet.story"}}</label>
+        {{editor system.story target="system.story" owner=owner editable=editable}}
+
+    </section>
+</form>

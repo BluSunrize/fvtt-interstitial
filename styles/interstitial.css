@@ -1,0 +1,72 @@
+.system-interstitial .sheet.actor header {
+    flex: none;
+}
+
+.system-interstitial .sheet.actor header img.profile-img {
+    max-width: 150px;
+    height: auto;
+}
+
+.system-interstitial .sheet.actor nav.sheet-tabs {
+    flex: none;
+}
+
+.system-interstitial .sheet.actor .stat-column {
+    border: 1px solid var(--color-border-light-tertiary);
+    border-radius: 3px;
+}
+
+.system-interstitial .sheet.actor .stat-column .stat-button {
+    background: var(--color-text-light-heading);
+    border: 1px solid var(--color-border-dark-tertiary);
+    border-radius: 3px;
+    margin: auto;
+    justify-content: center;
+    margin: 0 15px;
+    max-height: 50px
+}
+
+.system-interstitial .sheet.actor .stat-column .stat-button .stat-img,
+.system-interstitial .sheet.actor .stat-column .link-list .link-img {
+    flex-grow: unset;
+    margin-right: 5px;
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list {
+    padding: 0;
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.link {
+    min-height: 50px;
+    align-content: center;
+    flex-grow: 0;
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.link.spent {
+    color:var(--color-text-dark-inactive);
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.link:not(.spent) a.spend-link {
+    color: var(--color-text-hyperlink);
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.link i.link-strength {
+    position: relative;
+    left: 18px;
+    top: -8px;
+}
+
+.system-interstitial .sheet.actor .stat-column .link-list li.new-link {
+    margin-bottom: 5px;
+}
+
+
+.system-interstitial .sheet.actor .stat-column .link-list .item-controls {
+    display: flex;
+    justify-content: right;
+}
+
+
+.system-interstitial .sheet.item header {
+    flex: none;
+}
