@@ -42,7 +42,7 @@
                 {{#each system.statsAndLinks as |stat key|}}
                 <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
                     <div class="stat-button flexrow flex-group-center rollable">
-                        <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.png" height="50" width="50"/>
+                        <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.svg" height="50" width="50"/>
                         <div class="flexcol">
                             <label class="resource-label flexlarge">{{localize (concat "interstitial.stat." key)}}</label>
                             <span class="stat" data-roll="2d6 + @stats.{{key}}" data-label="{{localize (concat "interstitial.stat." key)}}">
