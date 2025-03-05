@@ -7,7 +7,7 @@ export class LinkItemSheet extends ItemSheet {
       return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["interstitial", "sheet", "item"],
         template: "systems/interstitial/templates/item/link-sheet.hbs",
-        width: 520,
+        width: 300,
         height: 480,
       });
     }
