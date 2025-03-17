@@ -1,4 +1,4 @@
-import { LINK_STRENGTHS, ROLL_MODIFIERS, STATS } from "../interstitial.mjs";
+import { LINK_STRENGTHS, MOVE_TYPES, ROLL_MODIFIERS, ROLL_STATS, STATS } from "../interstitial.mjs";
 
 const { BooleanField, HTMLField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
@@ -49,6 +49,27 @@ export class LinkDataModel extends foundry.abstract.TypeDataModel {
       }),
       spent: new BooleanField({ initial: false }),
       story: new HTMLField({ required: false, blank: true })
+    };
+  }
+}
+
+export class MoveDataModel extends foundry.abstract.TypeDataModel {
+  static defineSchema() {
+    return {
+      move_type: new StringField({
+        required: true,
+        blank: false,
+        options: MOVE_TYPES,
+        initial: MOVE_TYPES[0],
+      }),
+      roll_stat: new StringField({
+        required: true,
+        blank: false,
+        options: ROLL_STATS,
+        initial: ROLL_STATS[0],
+      }),
+      playbook: new StringField({ required: true, blank: true }),
+      description: new HTMLField({ required: false, blank: true }),
     };
   }
 }
