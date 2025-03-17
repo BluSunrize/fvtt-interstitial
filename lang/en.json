@@ -4,7 +4,8 @@
       "character": "Character"
     },
     "Item": {
-      "link": "Link"
+      "link": "Link",
+      "move": "Move"
     }
   },
   "interstitial": {
