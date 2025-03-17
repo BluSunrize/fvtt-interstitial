@@ -41,7 +41,7 @@ export class CharacterActorSheet extends ActorSheet {
     // Build harm array, starting at 1
     context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1);
     // Establish roll modes for stat buttons
-    context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj),{});
+    context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
     return context;
   }
@@ -190,6 +190,10 @@ export class CharacterActorSheet extends ActorSheet {
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: label,
         rollMode: game.settings.get('core', 'rollMode'),
+        system: {
+          stat: dataset.stat ? dataset.stat : null,
+          roll_modifier: this.actor.system.roll_modifier !== Object.keys(ROLL_MODIFIERS)[0] ? this.actor.system.roll_modifier : null,
+        },
       });
       return roll;
     }

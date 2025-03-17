@@ -1,0 +1,28 @@
+<section class="interstitial chat-roll" data-actor-id="{{actor._id}}" {{#if tokenId}}data-token-id="{{tokenId}}"{{/if}}>
+  <div class="cell cell--chat">
+    <div class="chat-title row flexrow">
+      {{#if image}}<img class="item-icon" src="{{image}}" alt="{{title}}"/>{{/if}}
+      {{#if title}}<h2 class="title">{{title}}</h2>{{/if}}
+    </div>
+
+    <div class="card-content">
+      {{!-- Flavor, trigger, and details. --}}
+      {{#if flavor}}<div class="row"><em>{{flavor}}</em></div>{{/if}}
+      {{#if details}}<div class="row">{{{details}}}</div>{{/if}}
+    </div>
+
+    {{#if dice}}
+    {{!-- Roll results, color coded to match the result type label. --}}
+    <div class="dice-roll">
+      {{#if flavor}}
+      <div class="dice-flavor">{{flavor}}</div>
+      {{/if}}
+      <div class="dice-result {{#each result_classes}}{{this}} {{/each}}">
+        <div class="dice-formula">{{formula}}</div>
+        {{{tooltip}}}
+        <h4 class="dice-total">{{total}}</h4>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</section>

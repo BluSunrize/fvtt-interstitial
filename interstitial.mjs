@@ -32,25 +32,27 @@ export const ROLL_MODIFIERS = {
 
 Hooks.once("init", async function () {
 
-	// Configure System Data Models.
-	CONFIG.Actor.dataModels = {
-		character: CharacterDataModel,
-	};
-	CONFIG.Item.dataModels = {
-		link: LinkDataModel,
-	};
-	
-	// Configure classes
-	CONFIG.Actor.documentClass = CharacterActor;
-
-	// Configure sheets
-	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('interstitial', CharacterActorSheet, {
-	  makeDefault: true,
-	});
-	
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('interstitial', LinkItemSheet, {
-	  makeDefault: true,
-	});
+  // Configure System Data Models.
+  CONFIG.Actor.dataModels = {
+    character: CharacterDataModel,
+  };
+  CONFIG.Item.dataModels = {
+  	link: LinkDataModel,
+  };
+  
+  // Configure classes
+  CONFIG.Actor.documentClass = CharacterActor;
+  
+  Roll.CHAT_TEMPLATE = "systems/interstitial/templates/chat/chat-roll.hbs";
+  
+  // Configure sheets
+  Actors.unregisterSheet('core', ActorSheet);
+  Actors.registerSheet('interstitial', CharacterActorSheet, {
+    makeDefault: true,
+  });
+  
+  Items.unregisterSheet('core', ItemSheet);
+  Items.registerSheet('interstitial', LinkItemSheet, {
+    makeDefault: true,
+  });
 });

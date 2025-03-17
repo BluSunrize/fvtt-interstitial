@@ -49,6 +49,9 @@
         "strength": "Link Strength",
         "story": "The Story behind the Link"
       }
+    },
+    "chat": {
+      "with_stat": "Rolling with {stat}"
     }
   }
 
