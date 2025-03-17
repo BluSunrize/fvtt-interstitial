@@ -87,7 +87,6 @@
     height: 80%;
 }
 
-.system-interstitial .sheet.move .move-desc .editor,
-.system-interstitial .sheet.move .move-desc .editor div.tox.tox-tinymce {
+.system-interstitial .sheet.move .move-desc .editor {
     height: 100% !important;
 }

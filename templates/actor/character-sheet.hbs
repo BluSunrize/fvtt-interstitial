@@ -107,12 +107,12 @@
                 <input name="system.story.homeworld" type="text" value="{{system.story.background}}" placeholder="{{localize "interstitial.label.character_sheet.homeworld_ph"}}" />
             </div>
             <h2> <label class="resource-label flexlarge" for="system.story.background">{{localize "interstitial.label.character_sheet.background"}}</label></h2>
-            {{editor system.story.background target="system.story.background" owner=owner editable=editable}}
+            {{editor system.story.background target="system.story.background" owner=owner editable=editable engine="prosemirror"}}
         </div>
         {{!-- Adventures with the Party Tab --}}
         <div class="tab adventure" data-group="primary" data-tab="adventure">
             <h2><label class="resource-label flexlarge" for="system.story.adventure">{{localize "interstitial.label.character_sheet.adventure"}}</label></h2>
-            {{editor system.story.adventure target="system.story.adventure" owner=owner editable=editable}}
+            {{editor system.story.adventure target="system.story.adventure" owner=owner editable=editable engine="prosemirror"}}
         </div>
 
 
