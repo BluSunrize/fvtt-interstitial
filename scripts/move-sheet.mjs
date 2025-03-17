@@ -8,7 +8,7 @@ export class MoveItemSheet extends ItemSheet {
         classes: ["interstitial", "sheet", "item", "move"],
         template: "systems/interstitial/templates/item/move-sheet.hbs",
         width: 600,
-        height: 480,
+        height: 600,
       });
     }
 

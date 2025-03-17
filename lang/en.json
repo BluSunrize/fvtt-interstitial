@@ -46,6 +46,7 @@
         "pronouns_ph": "Amateur nouns are acceptable too",
         "harm": "Harm",
         "links_stats": "Links & Stats",
+        "moves": "Moves",
         "story": "Their Story",
         "adventures": "Their Adventures",
         "hold": "Hold",
@@ -65,7 +66,8 @@
       "move_sheet": {
         "move_type": "Move Type",
         "playbook": "From Playbook",
-        "description": "Move Details"
+        "prompt": "Move Prompt",
+        "details": "Move Details"
       }
     },
     "chat": {

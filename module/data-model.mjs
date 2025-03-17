@@ -69,7 +69,8 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
                 initial: ROLL_STATS[0],
             }),
             playbook: new StringField({ required: true, blank: true }),
-            description: new HTMLField({ required: false, blank: true }),
+            prompt: new HTMLField({ required: false, blank: true }),
+            details: new HTMLField({ required: false, blank: true }),
         };
     }
 }

@@ -31,9 +31,13 @@
         </section>
         <hr>
         <section class="flexcol move-desc">
-            <label for="system.description" class="resource-label flex0">{{localize "interstitial.label.move_sheet.description"}}</label>
-            <div>
-            {{editor system.description target="system.description" owner=owner editable=editable}}
+            <label for="system.prompt" class="resource-label flex0">{{localize "interstitial.label.move_sheet.prompt"}}</label>
+            <div class="flex1">
+                {{editor system.prompt target="system.prompt" owner=owner editable=editable engine="prosemirror"}}
+            </div>
+            <label for="system.details" class="resource-label flex0">{{localize "interstitial.label.move_sheet.details"}}</label>
+            <div class="flex2">
+                {{editor system.details target="system.details" owner=owner editable=editable engine="prosemirror"}}
             </div>
         </section>
     </section>
