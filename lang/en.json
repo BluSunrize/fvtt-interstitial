@@ -43,7 +43,6 @@
         "homeworld_ph": "The world from which they came",
         "background": "Backstory",
         "adventure": "Adventures with the Party"
-        
       },
       "link_sheet": {
         "strength": "Link Strength",
@@ -54,5 +53,4 @@
       "with_stat": "Rolling with {stat}"
     }
   }
-
 }

@@ -19,8 +19,7 @@
   "styles": [
     "styles/interstitial.css"
   ],
-  "scripts": [
-  ],
+  "scripts": [],
   "documentTypes": {
     "Actor": {
       "character": {}
@@ -48,6 +47,5 @@
   "download": "",
   "changelog": "",
   "bugs": "",
-  "flags": {
-  }
+  "flags": {}
 }

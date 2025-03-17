@@ -4,16 +4,16 @@ export class LinkItemSheet extends ItemSheet {
 
     /** @override */
     static get defaultOptions() {
-      return foundry.utils.mergeObject(super.defaultOptions, {
-        classes: ["interstitial", "sheet", "item"],
-        template: "systems/interstitial/templates/item/link-sheet.hbs",
-        width: 300,
-        height: 480,
-      });
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            classes: ["interstitial", "sheet", "item", "link"],
+            template: "systems/interstitial/templates/item/link-sheet.hbs",
+            width: 300,
+            height: 480,
+        });
     }
 
     /** @override */
-    getData(options={}) {
+    getData(options = {}) {
         const context = super.getData(options);
         const itemData = context.data;
 
@@ -21,8 +21,8 @@ export class LinkItemSheet extends ItemSheet {
         context.system = itemData.system;
         context.flags = itemData.flags;
 
-        context.system.stat_options = STATS.reduce((obj, x) => (obj[x] = `interstitial.stat.${x}`, obj),{});
-        context.system.strength_options = LINK_STRENGTHS.reduce((obj, x) => (obj[x] = `interstitial.link_strength.${x}`, obj),{});
+        context.system.stat_options = STATS.reduce((obj, x) => (obj[x] = `interstitial.stat.${x}`, obj), {});
+        context.system.strength_options = LINK_STRENGTHS.reduce((obj, x) => (obj[x] = `interstitial.link_strength.${x}`, obj), {});
 
         return context;
     }

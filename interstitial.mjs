@@ -5,35 +5,35 @@ import { LinkItemSheet } from "./scripts/link-sheet.mjs";
 import { MoveItemSheet } from "./scripts/move-sheet.mjs";
 
 export const STATS = [
-  "light",
-  "dark",
-  "mastery",
-  "heart",
+    "light",
+    "dark",
+    "mastery",
+    "heart",
 ];
 export const LINK_STRENGTHS = [
-  "standard",
-  "locked",
-  "bonded",
+    "standard",
+    "locked",
+    "bonded",
 ];
 export const LINK_STRENGTHS_ICONS = {
-  "standard": null,
-  "locked": "lock",
-  "bonded": "handshake-angle",
+    "standard": null,
+    "locked": "lock",
+    "bonded": "handshake-angle",
 };
 export const ROLL_MODIFIERS = {
-  'standard': '2d6',
-  'advantage': '3d6kh2',
-  'disadvantage': '3d6kl2',
+    'standard': '2d6',
+    'advantage': '3d6kh2',
+    'disadvantage': '3d6kl2',
 };
 export const MOVE_TYPES = [
-  "basic",
-  "link",
-  "playbook",
+    "basic",
+    "link",
+    "playbook",
 ];
 export const ROLL_STATS = [
-  "none",
-  ...STATS,
-  "ask",
+    "none",
+    ...STATS,
+    "ask",
 ];
 
 /* -------------------------------------------- */
@@ -42,33 +42,33 @@ export const ROLL_STATS = [
 
 Hooks.once("init", async function () {
 
-  // Configure System Data Models.
-  CONFIG.Actor.dataModels = {
-    character: CharacterDataModel,
-  };
-  CONFIG.Item.dataModels = {
-    link: LinkDataModel,
-    move: MoveDataModel,
-  };
+    // Configure System Data Models.
+    CONFIG.Actor.dataModels = {
+        character: CharacterDataModel,
+    };
+    CONFIG.Item.dataModels = {
+        link: LinkDataModel,
+        move: MoveDataModel,
+    };
 
-  // Configure classes
-  CONFIG.Actor.documentClass = CharacterActor;
+    // Configure classes
+    CONFIG.Actor.documentClass = CharacterActor;
 
-  Roll.CHAT_TEMPLATE = "systems/interstitial/templates/chat/chat-roll.hbs";
+    Roll.CHAT_TEMPLATE = "systems/interstitial/templates/chat/chat-roll.hbs";
 
-  // Configure sheets
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('interstitial', CharacterActorSheet, {
-    makeDefault: true,
-  });
+    // Configure sheets
+    Actors.unregisterSheet('core', ActorSheet);
+    Actors.registerSheet('interstitial', CharacterActorSheet, {
+        makeDefault: true,
+    });
 
-  Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('interstitial', LinkItemSheet, {
-    types: ['link'],
-    makeDefault: true,
-  });
-  Items.registerSheet('interstitial', MoveItemSheet, {
-    types: ['move'],
-    makeDefault: true,
-  });
+    Items.unregisterSheet('core', ItemSheet);
+    Items.registerSheet('interstitial', LinkItemSheet, {
+        types: ['link'],
+        makeDefault: true,
+    });
+    Items.registerSheet('interstitial', MoveItemSheet, {
+        types: ['move'],
+        makeDefault: true,
+    });
 });
