@@ -1,0 +1,40 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <section class="flexcol">
+            <div class="flexrow">
+                <label for="system.move_type" class="resource-label">{{localize "interstitial.label.move_sheet.move_type"}}</label>
+                <select name="system.move_type">
+                    {{selectOptions system.move_type_options selected=system.move_type localize=true}}
+                </select>
+            </div>
+            {{#if (ne system.move_type "basic")}}
+            <div class="flexrow">
+                <label for="system.playbook" class="resource-label">{{localize "interstitial.label.move_sheet.playbook"}}:</label>
+                <input name="system.playbook" type="text" value="{{system.playbook}}" placeholder="{{localize "interstitial.label.move_sheet.playbook"}}" />
+            </div>
+            {{/if}}
+            <div class="flexrow">
+                <label for="system.roll_stat" class="resource-label">{{localize "interstitial.label.stat"}}</label>
+                <select name="system.roll_stat">
+                    {{selectOptions system.roll_stat_options selected=system.roll_stat localize=true}}
+                </select>
+            </div>
+        </section>
+        <hr>
+        <section class="flexcol move-desc">
+            <label for="system.description" class="resource-label flex0">{{localize "interstitial.label.move_sheet.description"}}</label>
+            <div>
+            {{editor system.description target="system.description" owner=owner editable=editable}}
+            </div>
+        </section>
+    </section>
+</form>

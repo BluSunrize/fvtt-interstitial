@@ -79,7 +79,15 @@
     justify-content: right;
 }
 
-
 .system-interstitial .sheet.item header {
     flex: none;
+}
+
+.system-interstitial .sheet.move .move-desc {
+    height: 80%;
+}
+
+.system-interstitial .sheet.move .move-desc .editor,
+.system-interstitial .sheet.move .move-desc .editor div.tox.tox-tinymce {
+    height: 100% !important;
 }

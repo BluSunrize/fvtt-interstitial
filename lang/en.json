@@ -15,6 +15,14 @@
       "mastery": "Mastery",
       "heart": "Heart"
     },
+    "roll_stat": {
+      "none": "No roll",
+      "light": "Light",
+      "dark": "Dark",
+      "mastery": "Mastery",
+      "heart": "Heart",
+      "ask": "Ask when used"
+    },
     "link_strength": {
       "standard": "Standard Link",
       "locked": "Locked Link",
@@ -24,6 +32,11 @@
       "standard": "Standard",
       "advantage": "Advantage",
       "disadvantage": "Disadvantage"
+    },
+    "move_type": {
+      "basic": "Basic Move",
+      "link": "Link Move",
+      "playbook": "Playbook Move"
     },
     "label": {
       "stat": "Stat:",
@@ -48,6 +61,11 @@
       "link_sheet": {
         "strength": "Link Strength",
         "story": "The Story behind the Link"
+      },
+      "move_sheet": {
+        "move_type": "Move Type",
+        "playbook": "From Playbook",
+        "description": "Move Details"
       }
     },
     "chat": {
