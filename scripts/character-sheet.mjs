@@ -23,6 +23,11 @@ export class CharacterActorSheet extends ActorSheet {
         context.system = actorData.system;
         context.flags = actorData.flags;
 
+        // Build harm array, starting at 1
+        context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1);
+        // Establish roll modes for stat buttons
+        context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
+
         // Build stats array & link lists
         context.system.statsAndLinks = STATS.reduce((obj, x) => (obj[x] = {
             value: -1, // stats start at -1
@@ -38,10 +43,8 @@ export class CharacterActorSheet extends ActorSheet {
             }
         });
 
-        // Build harm array, starting at 1
-        context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1);
-        // Establish roll modes for stat buttons
-        context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
+        // Build basic move list, all characters have access to these
+        context.system.basic_moves = game.items.filter(i => i.type==='move' && i.system.move_type==='basic');
 
         return context;
     }

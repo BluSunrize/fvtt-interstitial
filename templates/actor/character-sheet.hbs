@@ -29,6 +29,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <h3><a class="item" data-tab="links">{{localize "interstitial.label.character_sheet.links_stats"}}</a></h3>
+        <h3><a class="item" data-tab="moves">{{localize "interstitial.label.character_sheet.moves"}}</a></h3>
         <h3><a class="item" data-tab="story">{{localize "interstitial.label.character_sheet.story"}}</a></h3>
         <h3><a class="item" data-tab="adventure">{{localize "interstitial.label.character_sheet.adventure"}}</a></h3>
     </nav>
@@ -99,6 +100,22 @@
                 </div>
                 {{/each}}
             </section>
+        </div>
+        {{!-- Moves Tab --}}
+        <div class="tab moves" data-group="primary" data-tab="moves">
+            <div class="basic-moves flexcol flex-group-center">
+                {{#each system.basic_moves as |move move_key|}}
+                <li class="item flexrow move flex1" data-item-id="{{move._id}}">
+                    <div class="flexcol flex1">
+                        <img class="move-img" src="{{move.img}}" title="{{move.name}}" height="30" width="30"/>
+                        <label class="move-name">{{move.name}}</label>
+                    </div>
+                    <div class="flexcol flex3 move-desc">
+                        {{editor move.system.prompt target="move.system.prompt" owner=owner editable=false}}
+                    </div>
+                </li>
+                {{/each}}
+            </div>
         </div>
         {{!-- Their Story Tab --}}
         <div class="tab story" data-group="primary" data-tab="story">
