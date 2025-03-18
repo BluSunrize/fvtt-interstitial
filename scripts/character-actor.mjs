@@ -20,9 +20,10 @@ export class CharacterActor extends Actor {
 
     async _sendChatMessage(template, templateData, roll = null) {
         // get values from optional roll
-        await Promise.resolve(roll).then((roll) => {
+        await Promise.resolve(roll).then(async (roll) => {
             if (roll != null) {
                 templateData["formula"] = roll.formula;
+                templateData["tooltip"] = await roll.getTooltip();
                 templateData["total"] = roll.total;
                 templateData["dice"] = roll.dice;
             }
