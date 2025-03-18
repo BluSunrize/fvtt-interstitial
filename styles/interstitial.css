@@ -1,3 +1,13 @@
+.flexrow>.flex12,
+.flexcol>.flex12 {
+    flex: 12;
+}
+
+.system-interstitial .item-controls .item-control.item-edit
+.system-interstitial .item-controls .item-control.item-delete {
+    margin: 0 5%;
+}
+
 .system-interstitial form.character section {
     margin: 8px 0;
 }
@@ -77,6 +87,37 @@
 .system-interstitial .sheet.actor .stat-column .link-list .item-controls {
     display: flex;
     justify-content: right;
+}
+
+.system-interstitial .sheet.actor .move-list li.move {
+    align-content: center;
+    flex-grow: 0;
+}
+
+.system-interstitial .sheet.actor .move-list .move-img {
+    flex-grow: unset;
+    margin-right: 5px;
+
+}
+
+.system-interstitial .sheet.actor .move-list li.new-move {
+    margin-bottom: 5px;
+}
+
+.system-interstitial .sheet.actor .move-list .item-controls {
+    display: flex;
+    justify-content: right;
+}
+
+.system-interstitial .sheet.actor .move-list li.move .move-container {
+    min-height: 50px;
+}
+
+.system-interstitial .sheet.actor .move-list li.move h4.move-name {
+    margin: 0;
+    flex-grow: 0;
+    font-size: 1.1em;
+    border-bottom: 1px solid var(--color-underline-inactive);
 }
 
 .system-interstitial .sheet.item header {

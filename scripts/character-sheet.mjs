@@ -10,7 +10,10 @@ export class CharacterActorSheet extends ActorSheet {
             width: 800,
             height: 600,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "links" }],
-            dragDrop: [{ dragSelector: '.item.link', dropSelector: '.link-list' }],
+            dragDrop: [
+                { dragSelector: '.item.link', dropSelector: '.link-list' },
+                { dragSelector: '.item.move', dropSelector: '.move-list' },
+            ],
         });
     }
 
@@ -28,23 +31,33 @@ export class CharacterActorSheet extends ActorSheet {
         // Establish roll modes for stat buttons
         context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
+        // Build basic move list, all characters have access to these
+        context.system.basic_moves = game.items.filter(i => i.type === 'move' && i.system.move_type === 'basic');
+        // Lists of link and playbook moves
+        context.system.link_moves = []
+        context.system.playbook_moves = []
+
         // Build stats array & link lists
         context.system.statsAndLinks = STATS.reduce((obj, x) => (obj[x] = {
             value: -1, // stats start at -1
             links: []
         }, obj), {});
-        // Determine stats from links
         context.items.forEach(item => {
             if (item.type === 'link') {
+                // Determine stats from links
                 context.system.statsAndLinks[item.system.stat].value += 1;
                 context.system.statsAndLinks[item.system.stat].links.push(foundry.utils.mergeObject(item, {
                     strength_icon: LINK_STRENGTHS_ICONS[item.system.strength],
                 }));
+            } else if (item.type === 'move') {
+                if (item.system.move_type === 'basic')
+                    context.system.basic_moves.push(item);
+                else if (item.system.move_type === 'link')
+                    context.system.link_moves.push(item);
+                else if (item.system.move_type === 'playbook')
+                    context.system.playbook_moves.push(item);
             }
         });
-
-        // Build basic move list, all characters have access to these
-        context.system.basic_moves = game.items.filter(i => i.type==='move' && i.system.move_type==='basic');
 
         return context;
     }
@@ -122,30 +135,31 @@ export class CharacterActorSheet extends ActorSheet {
 
     /** @override */
     async _onDropItem(event, data) {
-        const item = await Item.implementation.fromDropData(data);
-
-        const sameActor = this.actor.uuid === item.parent?.uuid;
-        if (!sameActor)
-            return;
-
-        // this is a re-implementation of vanilla logic which differentiates
-        // between moving and copying items
-        const isCopying = event.ctrlKey;
         if (!this.actor.isOwner)
             return false;
+
+        const item = await Item.implementation.fromDropData(data);
+        const sameActor = this.actor.uuid === item.parent?.uuid;
         const itemData = item.toObject();
+        if (sameActor) {
+            // this is a re-implementation of vanilla logic which differentiates
+            // between moving and copying items
+            const isCopying = event.ctrlKey;
 
-        // change stat of the link
-        const targetStat = $(event.currentTarget).parents('.stat-column').data('stat');
-        if (itemData.system.stat !== targetStat)
-            await this.actor.updateEmbeddedDocuments("Item", [{
-                '_id': itemData._id,
-                'system.stat': targetStat,
-            }]);
+            // change stat of the link
+            const targetStat = $(event.currentTarget).parents('.stat-column').data('stat');
+            if (itemData.system.stat !== targetStat)
+                await this.actor.updateEmbeddedDocuments("Item", [{
+                    '_id': itemData._id,
+                    'system.stat': targetStat,
+                }]);
 
-        // Handle item sorting within the same Actor, unless copying
-        if (sameActor && !isCopying)
-            return this._onSortItem(event, itemData);
+            // Handle item sorting within the same Actor, unless copying
+            if (sameActor && !isCopying)
+                return this._onSortItem(event, itemData);
+        } else {
+            return this._onDropItemCreate(itemData);
+        }
     }
 
     /** @override */
