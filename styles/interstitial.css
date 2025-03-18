@@ -3,8 +3,7 @@
     flex: 12;
 }
 
-.system-interstitial .item-controls .item-control.item-edit
-.system-interstitial .item-controls .item-control.item-delete {
+.system-interstitial .item-controls .item-control.item-edit .system-interstitial .item-controls .item-control.item-delete {
     margin: 0 5%;
 }
 
@@ -97,7 +96,14 @@
 .system-interstitial .sheet.actor .move-list .move-img {
     flex-grow: unset;
     margin-right: 5px;
+}
 
+.system-interstitial .sheet.actor .move-list .move-roll-img {
+    flex-grow: unset;
+    position: relative;
+    bottom: 22px;
+    left: 36px;
+    background: var(--color-bg-btn-minor-active);
 }
 
 .system-interstitial .sheet.actor .move-list li.new-move {

@@ -17,6 +17,14 @@ export class CharacterActorSheet extends ActorSheet {
         });
     }
 
+    _getRollIcon(move) {
+        if (move.system.roll_stat === 'none')
+            return null;
+        if (move.system.roll_stat === 'ask')
+            return 'systems/interstitial/assets/icons/stats/card-pickup.svg';
+        return `systems/interstitial/assets/icons/stats/${move.system.roll_stat}.svg`;
+    }
+
     /** @override */
     getData(options = {}) {
         const context = super.getData(options);
@@ -31,9 +39,8 @@ export class CharacterActorSheet extends ActorSheet {
         // Establish roll modes for stat buttons
         context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
-        // Build basic move list, all characters have access to these
-        context.system.basic_moves = game.items.filter(i => i.type === 'move' && i.system.move_type === 'basic');
-        // Lists of link and playbook moves
+        // Initialize move lists
+        context.system.basic_moves = [];
         context.system.link_moves = []
         context.system.playbook_moves = []
 
@@ -50,12 +57,17 @@ export class CharacterActorSheet extends ActorSheet {
                     strength_icon: LINK_STRENGTHS_ICONS[item.system.strength],
                 }));
             } else if (item.type === 'move') {
+                // Show icon for roll
+                const updated_move = foundry.utils.mergeObject(item, {
+                    roll_icon: this._getRollIcon(item),
+                })
+                // Add to correct list (though extra basic moves are unlikely...)
                 if (item.system.move_type === 'basic')
-                    context.system.basic_moves.push(item);
+                    context.system.basic_moves.push(updated_move);
                 else if (item.system.move_type === 'link')
-                    context.system.link_moves.push(item);
+                    context.system.link_moves.push(updated_move);
                 else if (item.system.move_type === 'playbook')
-                    context.system.playbook_moves.push(item);
+                    context.system.playbook_moves.push(updated_move);
             }
         });
 
