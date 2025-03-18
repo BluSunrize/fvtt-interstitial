@@ -73,8 +73,11 @@
         "details": "Move Details"
       }
     },
+    "dialog": {
+      "select_stat": "Select a Stat to roll with"
+    },
     "chat": {
-      "with_stat": "Rolling with {stat}"
+      "rolling_with": "Rolling with {arg}"
     }
   }
 }

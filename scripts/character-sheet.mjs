@@ -134,6 +134,14 @@ export class CharacterActorSheet extends ActorSheet {
         html.on('click', '.spend-link', this._onSpendLink.bind(this));
 
 
+        // Spending a link
+        html.on('click', '.roll-move', (ev) => {
+            const li = $(ev.currentTarget).parents('.item');
+            const item = this.actor.items.get(li.data('itemId'));
+            return this.actor.rollMove(item);
+        });
+
+
         // Drag events for macros.
         if (this.actor.isOwner) {
             let handler = ev => this._onDragStart(ev);
