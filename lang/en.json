@@ -51,6 +51,7 @@
         "adventures": "Their Adventures",
         "hold": "Hold",
         "roll_modifier": "Roll modifier",
+        "exploding_dice": "Dice explode on doubles",
         "link_moves": "Link Moves",
         "basic_moves": "Basic Moves",
         "playbook_moves": "Playbook Moves",

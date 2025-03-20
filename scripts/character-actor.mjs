@@ -19,15 +19,16 @@ export class CharacterActor extends Actor {
     }
 
     async _sendChatMessage(template, templateData, roll = null) {
-        // get values from optional roll
-        await Promise.resolve(roll).then(async (roll) => {
-            if (roll != null) {
+        if (roll != null) {
+            // handle explosions on doubles
+            // then get values from optional roll
+            await roll.then(this._handleExplodingDice.bind(this)).then(async (roll) => {
                 templateData["formula"] = roll.formula;
                 templateData["tooltip"] = await roll.getTooltip();
-                templateData["total"] = roll.total;
+                templateData["total"] = roll._evaluateTotal();
                 templateData["dice"] = roll.dice;
-            }
-        });
+            });
+        }
 
         const html = await renderTemplate(template, templateData);
 
@@ -48,6 +49,26 @@ export class CharacterActor extends Actor {
             }
         };
         return ChatMessage.create(chatData);
+    }
+
+    async _handleExplodingDice(roll) {
+        // exit early if feature is disabled
+        if (!this.system.exploding_dice)
+            return Promise.resolve(roll);
+
+        // filter to any that hit doubles
+        const has_doubles = roll.dice.filter(dice =>
+            dice.results
+                .filter(d => d.active && !d.exploded)
+                .every((die, i, arr) => die.result === arr[0].result)
+        );
+
+        // doubles found, explode them and then check again
+        if (has_doubles.length)
+            return Promise.all(has_doubles.map(dice => dice.explodeOnce('x2>0'))).then(() => this._handleExplodingDice(roll));
+
+        // no doubles, return the roll
+        return Promise.resolve(roll);
     }
 
     async rollMove(move) {

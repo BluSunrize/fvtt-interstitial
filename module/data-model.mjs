@@ -23,6 +23,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
                 options: Object.keys(ROLL_MODIFIERS),
                 initial: Object.keys(ROLL_MODIFIERS)[0],
             }),
+            exploding_dice: new BooleanField({ initial: false }),
             story: new SchemaField({
                 homeworld: new StringField({ required: true, blank: true }),
                 background: new HTMLField({ required: false, blank: true }),

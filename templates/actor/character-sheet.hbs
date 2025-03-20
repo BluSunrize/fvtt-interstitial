@@ -46,6 +46,9 @@
                 <select name="system.roll_modifier">
                     {{selectOptions system.roll_modifiers selected=system.roll_modifier localize=true}}
                 </select>
+                <span></span>
+                <label for="system.exploding_dice" class="resource-label flex1">{{localize "interstitial.label.character_sheet.exploding_dice"}}:</label>
+                <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked system.exploding_dice}} />
             </section>
             <br>
             <section class="flexcol">
