@@ -24,9 +24,18 @@ export class CharacterActor extends Actor {
             // then get values from optional roll
             await roll.then(this._handleExplodingDice.bind(this)).then(async (roll) => {
                 templateData["formula"] = roll.formula;
-                templateData["tooltip"] = await roll.getTooltip();
                 templateData["total"] = roll._evaluateTotal();
                 templateData["dice"] = roll.dice;
+                // wrap tooltip with extra info
+                templateData["tooltip"] = await Promise.all([
+                    roll.getTooltip(),
+                    renderTemplate('systems/interstitial/templates/chat/dice-tooltip-prefix.hbs', templateData),
+                    renderTemplate('systems/interstitial/templates/chat/dice-tooltip-postfix.hbs', templateData),
+                ]).then(parts => {
+                    const prefix_idx = parts[0].indexOf('>')+1;
+                    const postfix_idx = parts[0].lastIndexOf('<');
+                    return parts[0].slice(0, prefix_idx) + parts[1] + parts[0].slice(prefix_idx, postfix_idx) + parts[2] + parts[0].slice(postfix_idx);
+                });
             });
         }
 

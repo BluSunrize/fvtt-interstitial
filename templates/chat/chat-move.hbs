@@ -12,12 +12,6 @@
     {{#if dice}}
     {{!-- Roll results, color coded to match the result type label. --}}
     <div class="dice-roll">
-      {{#if stat}}
-        <div class="row">{{concat (localize "interstitial.chat.rolling_with" arg=(localize (concat "interstitial.stat." stat)))}}</div>
-      {{/if}}
-      {{#if roll_data.roll_modifier}}
-        <div class="row">{{concat (localize "interstitial.chat.rolling_with" arg=(localize (concat "interstitial.roll_modifier." roll_data.roll_modifier)))}}</div>
-      {{/if}}
       {{#if flavor}}
       <div class="dice-flavor">{{flavor}}</div>
       {{/if}}

@@ -1,0 +1,8 @@
+<section class="tooltip-part flexcol">
+    {{#if stat}}
+    <div class="row">
+        {{concat (localize "interstitial.chat.rolling_with" arg=(localize (concat "interstitial.stat." stat)))}}
+        ({{numberFormat (lookup roll_data.stats stat) sign=true}})
+    </div>
+    {{/if}}
+</section>
