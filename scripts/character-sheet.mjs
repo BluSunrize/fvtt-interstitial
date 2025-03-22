@@ -21,7 +21,7 @@ export class CharacterActorSheet extends ActorSheet {
         if (move.system.roll_stat === 'none')
             return null;
         if (move.system.roll_stat === 'ask')
-            return 'systems/interstitial/assets/icons/stats/card-pickup.svg';
+            return 'systems/interstitial/assets/icons/game-icons/card-pickup.svg';
         return `systems/interstitial/assets/icons/stats/${move.system.roll_stat}.svg`;
     }
 
