@@ -19,6 +19,15 @@
   "styles": [
     "styles/interstitial.css"
   ],
+  "packs": [
+    {
+      "name": "basic-moves",
+      "label": "Basic Moves",
+      "system": "interstitial",
+      "type": "Item",
+      "path": "packs/basic-moves"
+    }
+  ],
   "scripts": [],
   "documentTypes": {
     "Actor": {
