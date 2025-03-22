@@ -137,3 +137,11 @@
 .system-interstitial .sheet.move .move-desc .editor {
     height: 100% !important;
 }
+
+.system-interstitial .chat-message .item-icon {
+    flex-grow: 0;
+    min-width: 40px;
+    min-height: 40px;
+    margin-right: 10px;
+    background: var(--color-border-light-secondary);
+}
