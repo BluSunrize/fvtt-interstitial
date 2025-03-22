@@ -70,6 +70,8 @@ export class CharacterActorSheet extends ActorSheet {
                     context.system.playbook_moves.push(updated_move);
             }
         });
+        // Sort basic moves alphabetically
+        context.system.basic_moves.sort((a, b) => a.name.localeCompare(b.name));
 
         return context;
     }
