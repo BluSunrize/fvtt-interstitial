@@ -19,6 +19,12 @@ export class CharacterActor extends Actor {
     }
 
     async _sendChatMessage(template, templateData, roll = null) {
+        // prepare data
+        const chatData = {
+            user: game.user._id,
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+        };
+
         if (roll != null) {
             // handle explosions on doubles
             // then get values from optional roll
@@ -32,31 +38,30 @@ export class CharacterActor extends Actor {
                     renderTemplate('systems/interstitial/templates/chat/dice-tooltip-prefix.hbs', templateData),
                     renderTemplate('systems/interstitial/templates/chat/dice-tooltip-postfix.hbs', templateData),
                 ]).then(parts => {
-                    const prefix_idx = parts[0].indexOf('>')+1;
+                    const prefix_idx = parts[0].indexOf('>') + 1;
                     const postfix_idx = parts[0].lastIndexOf('<');
                     return parts[0].slice(0, prefix_idx) + parts[1] + parts[0].slice(prefix_idx, postfix_idx) + parts[2] + parts[0].slice(postfix_idx);
                 });
+                // this is necessary to trigger dice so nice
+                chatData['type'] = CONST.CHAT_MESSAGE_TYPES.ROLL;
+                chatData['rolls'] = [roll];
             });
         }
 
-        const html = await renderTemplate(template, templateData);
+        // render template and insert
+        chatData['content'] = await renderTemplate(template, templateData);
 
-        // find token
+        // find token and assign speaker
         let token = this.token;
         if (!token)
             token = this.getActiveTokens()[0];
-
-        // assemble and send chat message
-        const chatData = {
-            user: game.user._id,
-            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-            content: html,
-            speaker: {
-                token: this.token ? this.token.id : null,
-                alias: this.token ? this.token.name : this.name,
-                actor: this.id
-            }
+        chatData['speaker'] = {
+            token: this.token ? this.token.id : null,
+            alias: this.token ? this.token.name : this.name,
+            actor: this.id
         };
+
+        // send chat message
         return ChatMessage.create(chatData);
     }
 
