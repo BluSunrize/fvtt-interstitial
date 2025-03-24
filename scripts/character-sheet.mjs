@@ -203,8 +203,8 @@ export class CharacterActorSheet extends ActorSheet {
             system: data,
         };
 
-        // Finally, create the item!
-        return await Item.create(itemData, { parent: this.actor });
+        // Finally, create the item and show its sheet!
+        return Item.create(itemData, { parent: this.actor }).then(item => item.sheet.render(true));
     }
 
     _onRoll(event) {
