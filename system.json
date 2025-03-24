@@ -2,6 +2,9 @@
   "id": "interstitial",
   "title": "Interstitial 2E - Our Worlds Connected",
   "description": "Running Interstitial 2nd Edition in Foundry VTT!",
+  "url": "https://github.com/BluSunrize/fvtt-interstitial",
+  "manifest": "https://github.com/BluSunrize/fvtt-interstitial/releases/latest/download/system.json",
+  "download": "https://github.com/BluSunrize/fvtt-interstitial/releases/latest/download/system.zip",
   "version": "1.0.0",
   "compatibility": {
     "minimum": "12",
@@ -50,11 +53,5 @@
     "distance": 5,
     "units": "ft"
   },
-  "socket": true,
-  "url": "",
-  "manifest": "",
-  "download": "",
-  "changelog": "",
-  "bugs": "",
-  "flags": {}
+  "socket": true
 }
