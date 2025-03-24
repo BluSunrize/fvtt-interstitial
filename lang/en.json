@@ -8,6 +8,9 @@
       "move": "Move"
     }
   },
+  "DOCUMENT": {
+    "Edit": "Edit {type}"
+  },
   "interstitial": {
     "stat": {
       "light": "Light",
