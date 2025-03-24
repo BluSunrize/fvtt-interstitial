@@ -42,6 +42,13 @@ export class CharacterActor extends Actor {
                     const postfix_idx = parts[0].lastIndexOf('<');
                     return parts[0].slice(0, prefix_idx) + parts[1] + parts[0].slice(prefix_idx, postfix_idx) + parts[2] + parts[0].slice(postfix_idx);
                 });
+                //css classes for highlighting
+                templateData["result_classes"] = [
+                    templateData["total"]>=10 && 'success',
+                    templateData["total"]<7 && 'fail',
+                    templateData["dice"].some(d => d.results.some(r => r.exploded))  && 'exploded',
+                ].filter(Boolean);
+
                 // this is necessary to trigger dice so nice
                 chatData['type'] = CONST.CHAT_MESSAGE_TYPES.ROLL;
                 chatData['rolls'] = [roll];

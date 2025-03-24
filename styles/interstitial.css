@@ -145,3 +145,25 @@
     margin-right: 10px;
     background: var(--color-border-light-secondary);
 }
+
+.system-interstitial .chat-message .dice-result.success .dice-total {
+    color: green;
+}
+
+.system-interstitial .chat-message .dice-result.fail .dice-total {
+    color: red;
+}
+
+.system-interstitial .chat-message .dice-result.exploded .dice-total::after {
+    display: inline-block;
+    content: "";
+    background-color: black;
+    -webkit-mask-image: url('../assets/icons/game-icons/squib.svg');
+    mask-image: url('../assets/icons/game-icons/squib.svg');
+    width: var(--font-size-20);
+    height: var(--font-size-20);
+    background-size: var(--font-size-20) var(--font-size-20);
+    position: relative;
+    top: 4px;
+    left: 6px;
+}
