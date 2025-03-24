@@ -38,7 +38,7 @@
     <section class="sheet-body">
         {{!-- Links & Stats Tab --}}
         <div class="tab links flexcol" data-group="primary" data-tab="links">
-            <section class="roll_modifiers flexrow">
+            <section class="roll-modifiers flexrow">
                 <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
                 <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
                 <span></span>
@@ -51,7 +51,7 @@
                 <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked system.exploding_dice}} />
             </section>
             <br>
-            <section class="flexcol">
+            <section class="link-moves flexcol">
                 <h3>{{localize "interstitial.label.character_sheet.link_moves"}}</h3>
                 <div class="link-moves flexcol flex-group-center">
                     <ul class="move-list flexcol flex-group-center">
@@ -70,7 +70,7 @@
                 </div>
             </section>
             <br>
-            <section class="flexrow">
+            <section class="stats-and-links flexrow">
                 {{#each system.statsAndLinks as |stat key|}}
                 <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
                     <div class="stat-button flexrow flex-group-center rollable">

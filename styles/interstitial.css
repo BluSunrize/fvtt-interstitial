@@ -24,6 +24,19 @@
     flex: none;
 }
 
+.system-interstitial .sheet.actor .tab {
+    height: 100%;
+}
+
+.system-interstitial .sheet.actor .tab .editor.prosemirror {
+    height: 85%;
+}
+
+.system-interstitial .sheet.actor .tab.links section.roll-modifiers,
+.system-interstitial .sheet.actor .tab.links section.link-moves {
+    flex-grow: 0;
+}
+
 .system-interstitial .sheet.actor .stat-column {
     border: 1px solid var(--color-border-light-tertiary);
     border-radius: 3px;
