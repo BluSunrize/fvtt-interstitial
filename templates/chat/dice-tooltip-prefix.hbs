@@ -1,5 +1,5 @@
 <section class="tooltip-part flexcol">
-    {{#if roll_data.roll_modifier}}
+    {{#if (and roll_data.roll_modifier (ne roll_data.roll_modifier "standard"))}}
     <div class="row">{{concat (localize "interstitial.chat.rolling_with" arg=(localize (concat "interstitial.roll_modifier." roll_data.roll_modifier)))}}</div>
     {{/if}}
 </section>
