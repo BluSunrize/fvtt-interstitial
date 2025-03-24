@@ -212,16 +212,11 @@ export class CharacterActorSheet extends ActorSheet {
         const element = $(event.currentTarget).find('[data-roll]')[0];
         const dataset = element.dataset;
 
-        // // Handle item rolls.
-        // if (dataset.rollType) {
-        //   if (dataset.rollType == 'item') {
-        //     const itemId = element.closest('.item').dataset.itemId;
-        //     const item = this.actor.items.get(itemId);
-        //     if (item) return item.roll();
-        //   }
-        // }
+        // Handle stat specific rolls
+        if (dataset.stat)
+            return this.actor.rollStat(dataset.stat);
 
-        // Handle rolls that supply the formula directly.
+        // Handle other rolls that supply the formula directly
         if (dataset.roll) {
             let label = dataset.label ? `${dataset.label}` : '';
             let roll = new Roll(dataset.roll, this.actor.getRollData());
@@ -229,10 +224,6 @@ export class CharacterActorSheet extends ActorSheet {
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                 flavor: label,
                 rollMode: game.settings.get('core', 'rollMode'),
-                system: {
-                    stat: dataset.stat ? dataset.stat : null,
-                    roll_modifier: this.actor.system.roll_modifier !== Object.keys(ROLL_MODIFIERS)[0] ? this.actor.system.roll_modifier : null,
-                },
             });
             return roll;
         }

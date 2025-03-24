@@ -44,9 +44,9 @@ export class CharacterActor extends Actor {
                 });
                 //css classes for highlighting
                 templateData["result_classes"] = [
-                    templateData["total"]>=10 && 'success',
-                    templateData["total"]<7 && 'fail',
-                    templateData["dice"].some(d => d.results.some(r => r.exploded))  && 'exploded',
+                    templateData["total"] >= 10 && 'success',
+                    templateData["total"] < 7 && 'fail',
+                    templateData["dice"].some(d => d.results.some(r => r.exploded)) && 'exploded',
                 ].filter(Boolean);
 
                 // this is necessary to trigger dice so nice
@@ -125,6 +125,22 @@ export class CharacterActor extends Actor {
                 roll_data: roll_data,
             },
             stat ? new Roll(`@base_dice + @stats.${stat}`, roll_data).roll({ async: true }) : null,
+        );
+    }
+
+    async rollStat(stat) {
+        const roll_data = this.getRollData();
+        return this._sendChatMessage(
+            'systems/interstitial/templates/chat/chat-roll.hbs',
+            {
+                actor: this,
+                type: this.type,
+                stat: stat,
+                image: `systems/interstitial/assets/icons/stats/${stat}.svg`,
+                title: game.i18n.format(`interstitial.stat.${stat}`),
+                roll_data: roll_data,
+            },
+            new Roll(`@base_dice + @stats.${stat}`, roll_data).roll({ async: true }),
         );
     }
 }
