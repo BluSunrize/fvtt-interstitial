@@ -35,10 +35,12 @@
             <div class="flex1">
                 {{editor system.prompt target="system.prompt" owner=owner editable=editable engine="prosemirror"}}
             </div>
+            {{#if (ne system.move_type "link")}}
             <label for="system.details" class="resource-label flex0">{{localize "interstitial.label.move_sheet.details"}}</label>
             <div class="flex2">
                 {{editor system.details target="system.details" owner=owner editable=editable engine="prosemirror"}}
             </div>
+            {{/if}}
         </section>
     </section>
 </form>
