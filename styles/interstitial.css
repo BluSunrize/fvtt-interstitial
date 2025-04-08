@@ -151,6 +151,14 @@
     height: 100% !important;
 }
 
+.system-interstitial .sheet.link .link-desc {
+    height: 75%;
+}
+
+.system-interstitial .sheet.link .link-desc .editor {
+    height: 100% !important;
+}
+
 .system-interstitial .chat-message .item-icon {
     flex-grow: 0;
     min-width: 40px;
