@@ -54,8 +54,6 @@ Hooks.once("init", async function () {
     // Configure classes
     CONFIG.Actor.documentClass = CharacterActor;
 
-    Roll.CHAT_TEMPLATE = "systems/interstitial/templates/chat/chat-roll.hbs";
-
     // Configure sheets
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('interstitial', CharacterActorSheet, {
