@@ -1,0 +1,12 @@
+@layer framework.layout {
+
+    .system-interstitial .flexrow>.flex12,
+    .system-interstitial .flexcol>.flex12 {
+        flex: 12;
+    }
+
+    .system-interstitial .flexrow>.flex0,
+    .system-interstitial .flexcol>.flex0 {
+        flex: 0;
+    }
+}

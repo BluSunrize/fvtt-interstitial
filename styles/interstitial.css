@@ -1,8 +1,3 @@
-.flexrow>.flex12,
-.flexcol>.flex12 {
-    flex: 12;
-}
-
 .system-interstitial .item-controls .item-control.item-edit .system-interstitial .item-controls .item-control.item-delete {
     margin: 0 5%;
 }
