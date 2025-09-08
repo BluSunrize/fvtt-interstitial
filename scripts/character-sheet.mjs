@@ -39,6 +39,9 @@ export class CharacterActorSheet extends ActorSheet {
         // Establish roll modes for stat buttons
         context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
+        // Inventory
+        context.system.inventory = []
+
         // Initialize move lists
         context.system.basic_moves = [];
         context.system.link_moves = []
@@ -68,6 +71,8 @@ export class CharacterActorSheet extends ActorSheet {
                     context.system.link_moves.push(updated_move);
                 else if (item.system.move_type === 'playbook')
                     context.system.playbook_moves.push(updated_move);
+            } else if (item.type == 'item') {
+                context.system.inventory.push(item);
             }
         });
         // Sort basic moves alphabetically

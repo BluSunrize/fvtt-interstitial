@@ -37,8 +37,9 @@
       "character": {}
     },
     "Item": {
+      "link": {},
       "move": {},
-      "link": {}
+      "item": {}
     }
   },
   "languages": [

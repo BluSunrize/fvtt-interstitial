@@ -5,7 +5,8 @@
     },
     "Item": {
       "link": "Link",
-      "move": "Move"
+      "move": "Move",
+      "item": "Inventory Item"
     }
   },
   "DOCUMENT": {
@@ -52,6 +53,7 @@
         "moves": "Moves",
         "story": "Their Story",
         "adventures": "Their Adventures",
+        "inventory": "Inventory",
         "hold": "Hold",
         "roll_modifier": "Roll modifier",
         "exploding_dice": "Dice explode on doubles",
@@ -75,6 +77,9 @@
         "playbook": "From Playbook",
         "prompt": "Move Prompt",
         "details": "Move Details"
+      },
+      "item_sheet": {
+        "description": "Description"
       }
     },
     "dialog": {

@@ -1,0 +1,17 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <section class="link-desc flexcol">
+            <label for="system.story" class="resource-label flex0">{{localize "interstitial.label.item_sheet.description"}}</label>
+            {{editor system.story target="system.story" owner=owner editable=editable engine="prosemirror"}}
+        </section>
+    </section>
+</form>

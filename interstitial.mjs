@@ -1,6 +1,7 @@
-import { CharacterDataModel, LinkDataModel, MoveDataModel } from "./module/data-model.mjs";
+import { CharacterDataModel, ItemDataModel, LinkDataModel, MoveDataModel } from "./module/data-model.mjs";
 import { CharacterActor } from "./scripts/character-actor.mjs";
 import { CharacterActorSheet } from "./scripts/character-sheet.mjs";
+import { InventoryItemSheet } from "./scripts/item-sheet.mjs";
 import { LinkItemSheet } from "./scripts/link-sheet.mjs";
 import { MoveItemSheet } from "./scripts/move-sheet.mjs";
 
@@ -47,8 +48,9 @@ Hooks.once("init", async function () {
         character: CharacterDataModel,
     };
     CONFIG.Item.dataModels = {
-        move: MoveDataModel,
         link: LinkDataModel,
+        move: MoveDataModel,
+        item: ItemDataModel,
     };
 
     // Configure classes
@@ -67,6 +69,10 @@ Hooks.once("init", async function () {
     });
     Items.registerSheet('interstitial', LinkItemSheet, {
         types: ['link'],
+        makeDefault: true,
+    });
+    Items.registerSheet('interstitial', InventoryItemSheet, {
+        types: ['item'],
         makeDefault: true,
     });
 });

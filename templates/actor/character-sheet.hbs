@@ -32,6 +32,7 @@
         <h3><a class="item" data-tab="moves">{{localize "interstitial.label.character_sheet.moves"}}</a></h3>
         <h3><a class="item" data-tab="story">{{localize "interstitial.label.character_sheet.story"}}</a></h3>
         <h3><a class="item" data-tab="adventure">{{localize "interstitial.label.character_sheet.adventure"}}</a></h3>
+        <h3><a class="item" data-tab="inventory">{{localize "interstitial.label.character_sheet.inventory"}}</a></h3>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -199,6 +200,34 @@
         <div class="tab adventure" data-group="primary" data-tab="adventure">
             <h2><label class="resource-label flexlarge" for="system.story.adventure">{{localize "interstitial.label.character_sheet.adventure"}}</label></h2>
             {{editor system.story.adventure target="system.story.adventure" owner=owner editable=editable engine="prosemirror"}}
+        </div>
+        {{!-- Inventory Tab --}}
+        <div class="tab inventory" data-group="primary" data-tab="inventory">
+            <div class="inventory flexcol flex-group-center">
+                <ul class="inventory-list flexcol flex-group-center">
+                    {{#each system.inventory as |item|}}
+                    <li class="item flexrow move flex1" data-item-id="{{item._id}}">
+                        <div class="item-container flexrow" style="flex-basis: 100%;">
+                            <div class="flexcol flex1">
+                                <img class="item-img" src="{{item.img}}" title="{{item.name}}" height="30" width="30"/>
+                            </div>
+                            <div class="flexcol flex3">
+                                <label class="item-name">{{item.name}}</label>
+                            </div>
+                            <div class="item-controls flex1">
+                                <a class="item-control item-edit" title="{{localize "DOCUMENT.Edit" type=(localize "TYPES.Item.item")}}"><i class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" title="{{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.item")}}"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                    <li class="item flexrow flex0 new-item">
+                        <div class="item-controls">
+                            <a class="item-control item-create" title="{{localize "DOCUMENT.Create" type=(localize "TYPES.Item.item")}}" data-type="item"><i class='fas fa-plus'></i>{{localize 'DOCUMENT.New' type=(localize "TYPES.Item.item")}}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
 
