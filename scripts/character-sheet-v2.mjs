@@ -100,18 +100,11 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
     async _prepareContext(options) {
         // const context = super.getData(options);
         const context = await super._prepareContext(options);
-        const actorData = this.actor;//context.data;
-
-        // Add the actor's data to context.data for easier access, as well as flags.
-        context.actor = actorData;
-        context.system = actorData.system;
-        context.flags = actorData.flags;
-        // context.tabs = this._prepareTabs("primary");
 
         // Build harm array, starting at 1
-        context.system.harm_options = Array.fromRange(context.system.harm.max, context.system.harm.min + 1);
+        context.harm_options = Array.fromRange(this.document.system.harm.max, this.document.system.harm.min + 1);
         // Establish roll modes for stat buttons
-        context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
+        context.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
         // Enrich HTML content
         context.adventureHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
@@ -122,23 +115,23 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         );
 
         // Inventory
-        context.system.inventory = []
+        context.inventory = [];
 
         // Initialize move lists
-        context.system.basic_moves = [];
-        context.system.link_moves = []
-        context.system.playbook_moves = []
+        context.basic_moves = [];
+        context.link_moves = []
+        context.playbook_moves = [];
 
         // Build stats array & link lists
-        context.system.statsAndLinks = STATS.reduce((obj, x) => (obj[x] = {
+        context.statsAndLinks = STATS.reduce((obj, x) => (obj[x] = {
             value: -1, // stats start at -1
             links: []
         }, obj), {});
-        context.document.items.forEach(item => {
+        this.document.items.forEach(item => {
             if (item.type === 'link') {
                 // Determine stats from links
-                context.system.statsAndLinks[item.system.stat].value += 1;
-                context.system.statsAndLinks[item.system.stat].links.push(foundry.utils.mergeObject(item, {
+                context.statsAndLinks[item.system.stat].value += 1;
+                context.statsAndLinks[item.system.stat].links.push(foundry.utils.mergeObject(item, {
                     strength_icon: LINK_STRENGTHS_ICONS[item.system.strength],
                 }));
             } else if (item.type === 'move') {
@@ -148,17 +141,17 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
                 })
                 // Add to correct list (though extra basic moves are unlikely...)
                 if (item.system.move_type === 'basic')
-                    context.system.basic_moves.push(updated_move);
+                    context.basic_moves.push(updated_move);
                 else if (item.system.move_type === 'link')
-                    context.system.link_moves.push(updated_move);
+                    context.link_moves.push(updated_move);
                 else if (item.system.move_type === 'playbook')
-                    context.system.playbook_moves.push(updated_move);
+                    context.playbook_moves.push(updated_move);
             } else if (item.type == 'item') {
-                context.system.inventory.push(item);
+                context.inventory.push(item);
             }
         });
         // Sort basic moves alphabetically
-        context.system.basic_moves.sort((a, b) => a.name.localeCompare(b.name));
+        context.basic_moves.sort((a, b) => a.name.localeCompare(b.name));
 
         return context;
     }

@@ -1,7 +1,7 @@
 <section class="tab scrollable {{tabs.inventory.id}} {{tabs.inventory.cssClass}}" data-group="{{tabs.inventory.group}}" data-tab="{{tabs.inventory.id}}">
     <div class="inventory flexcol flex-group-center">
         <ul class="inventory-list flexcol flex-group-center">
-            {{#each system.inventory as |item|}}
+            {{#each inventory as |item|}}
             <li class="item flexrow move flex1" data-item-id="{{item._id}}">
                 <div class="item-container flexrow" style="flex-basis: 100%;">
                     <div class="flexcol flex1">

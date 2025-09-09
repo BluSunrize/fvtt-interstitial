@@ -1,8 +1,8 @@
 <header class="sheet-header flexrow">
     {{!-- Header stuff goes here --}}
-    <img class="profile-img flex1" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <img class="profile-img flex1" src="{{document.img}}" data-edit="img" title="{{document.name}}" />
     <div class="header-fields flexcol flex3">
-        <h1 class="charname flexrow flex0"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+        <h1 class="charname flexrow flex0"><input name="name" type="text" value="{{document.name}}" placeholder="Name" /></h1>
         <div class="flexrow flex1">
             <label for="system.playbook" class="resource-label flex1">{{localize "interstitial.label.character_sheet.playbook"}}:</label>
             <input name="system.playbook" class="flex3" type="text" value="{{document.system.playbook}}" placeholder="{{localize "interstitial.label.character_sheet.playbook"}}" />
@@ -14,8 +14,8 @@
         <div class="flexrow flex1">
             <label for="system.harm.value" class="resource-label flex1">{{localize "interstitial.label.character_sheet.harm"}}:</label>
             <div class="harm-clock flexrow flex1">
-                {{#each system.harm_options as |harm_val|}}
-                    <input type="checkbox" name="system.harm_clock.{{harm_val}}" {{checked (gte ../system.harm.value harm_val)}} />
+                {{#each harm_options as |harm_val|}}
+                    <input type="checkbox" name="system.harm_clock.{{harm_val}}" {{checked (gte ../document.system.harm.value harm_val)}} />
                 {{/each}}
             </div>
             <div class="spacer flex2"></div>

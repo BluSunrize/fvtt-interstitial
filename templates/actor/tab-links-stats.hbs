@@ -5,7 +5,7 @@
         <span></span>
         <label for="system.roll_modifier" class="resource-label flex1">{{localize "interstitial.label.character_sheet.roll_modifier"}}:</label>
         <select name="system.roll_modifier">
-            {{selectOptions system.roll_modifiers selected=document.system.roll_modifier localize=true}}
+            {{selectOptions roll_modifiers selected=document.system.roll_modifier localize=true}}
         </select>
     </section>
     <br>
@@ -13,7 +13,7 @@
         <h3>{{localize "interstitial.label.character_sheet.link_moves"}}</h3>
         <div class="link-moves flexcol flex-group-center">
             <ul class="move-list flexcol flex-group-center">
-                {{#each system.link_moves as |move move_key|}}
+                {{#each link_moves as |move move_key|}}
                 <li class="item flexrow move flex1" data-item-id="{{move._id}}">
                     <div class="flexcol flex12 move-desc">
                         {{editor move.system.prompt target="move.system.prompt" owner=owner editable=false}}
@@ -34,7 +34,7 @@
     </section>
     <br>
     <section class="stats-and-links flexrow">
-        {{#each system.statsAndLinks as |stat key|}}
+        {{#each statsAndLinks as |stat key|}}
         <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
             <div class="stat-button flexrow flex-group-center rollable">
                 <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.svg" height="50" width="50"/>
