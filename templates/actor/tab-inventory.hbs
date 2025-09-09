@@ -2,7 +2,7 @@
     <div class="inventory flexcol flex-group-center">
         <ul class="inventory-list flexcol flex-group-center">
             {{#each inventory as |item|}}
-            <li class="item flexrow move flex1" data-item-id="{{item._id}}">
+            <li class="item draggable flexrow move flex1" data-item-id="{{item._id}}">
                 <div class="item-container flexrow" style="flex-basis: 100%;">
                     <div class="flexcol flex1">
                         <img class="item-img" src="{{item.img}}" title="{{item.name}}" height="30" width="30"/>

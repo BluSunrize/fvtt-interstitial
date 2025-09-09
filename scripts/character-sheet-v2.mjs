@@ -181,52 +181,29 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
     }
 
     /** @override */
-    activateListeners(html) {
-        if (!html)
-            return;
-        super.activateListeners(html);
-
-        // -------------------------------------------------------------
-        // Everything below here is only needed if the sheet is editable
-        if (!this.isEditable) return;
-
-        // Drag events for macros.
-        if (this.actor.isOwner) {
-            let handler = ev => this._onDragStart(ev);
-            html.find('li.item').each((i, li) => {
-                if (li.classList.contains("inventory-header")) return;
-                li.setAttribute("draggable", true);
-                li.addEventListener("dragstart", handler, false);
-            });
-        }
-    }
-
-    /** @override */
-    async _onDropItem(event, data) {
+    async _onDropItem(event, item) {
         if (!this.actor.isOwner)
             return false;
 
-        const item = await Item.implementation.fromDropData(data);
         const sameActor = this.actor.uuid === item.parent?.uuid;
-        const itemData = item.toObject();
         if (sameActor) {
             // this is a re-implementation of vanilla logic which differentiates
             // between moving and copying items
             const isCopying = event.ctrlKey;
 
             // change stat of the link
-            const targetStat = $(event.currentTarget).parents('.stat-column').data('stat');
-            if (itemData.system.stat !== targetStat)
+            const targetStat = $(event.target).parents('.stat-column').data('stat');
+            if (item.system.stat !== targetStat)
                 await this.actor.updateEmbeddedDocuments("Item", [{
-                    '_id': itemData._id,
+                    '_id': item._id,
                     'system.stat': targetStat,
                 }]);
 
             // Handle item sorting within the same Actor, unless copying
             if (sameActor && !isCopying)
-                return this._onSortItem(event, itemData);
+                return this._onSortItem(event, item);
         } else {
-            return this._onDropItemCreate(itemData);
+            return this._onDropItemCreate(item);
         }
     }
 

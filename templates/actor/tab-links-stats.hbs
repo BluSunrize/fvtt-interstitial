@@ -54,7 +54,7 @@
                 </li>
 
                 {{#each stat.links as |link list_key|}}
-                <li class="item flexcol link flex1 {{ifThen link.system.spent 'spent' ''}}" data-item-id="{{link._id}}">
+                <li class="item draggable flexcol link flex1 {{ifThen link.system.spent 'spent' ''}}" data-item-id="{{link._id}}">
                     <div class="link-container flexrow" style="flex-basis: 100%;">
                         <div class="flexcol flex1">
                             <img class="link-img" src="{{link.img}}" title="{{link.name}}" height="30" width="30"/>

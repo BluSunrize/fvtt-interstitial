@@ -5,7 +5,7 @@
         </div>
         <ul class="move-list flexcol flex-group-center">
             {{#each basic_moves as |move move_key|}}
-            <li class="item flexcol move flex1" data-item-id="{{move._id}}">
+            <li class="item draggable flexcol move flex1" data-item-id="{{move._id}}">
                 <div class="move-container flexrow" style="flex-basis: 100%;">
                     <a class="roll-move flexcol flex1" data-action="rollMove">
                         <img class="move-img" src="{{move.img}}" title="{{move.name}}" height="50" width="50"/>
@@ -28,7 +28,7 @@
         </div>
         <ul class="move-list flexcol flex-group-center">
             {{#each playbook_moves as |move move_key|}}
-            <li class="item flexcol move flex1" data-item-id="{{move._id}}">
+            <li class="item draggable flexcol move flex1" data-item-id="{{move._id}}">
                 <div class="move-container flexrow" style="flex-basis: 100%;">
                     <a class="roll-move flexcol flex1" data-action="rollMove">
                         <img class="move-img" src="{{move.img}}" title="{{move.name}}" height="50" width="50"/>
