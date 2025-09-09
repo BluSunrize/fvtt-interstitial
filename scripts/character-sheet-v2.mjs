@@ -157,48 +157,20 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
     }
 
     /** @override */
-    _getSubmitData(updateData = {}) {
-        const formData = new FormDataExtended(this.form).object;
-        return foundry.utils.expandObject(formData);
+    _processFormData(event, form, formData) {
+        const expanded = super._processFormData(event, form, formData);
+        // fetch current harm from document
+        const currentHarm = this.document.system.harm.value;
+        // find checkbox that is unset and lower, or set and higher
+        const harm_clock = expanded.system.harm_clock;
+        const harm_decr = Object.keys(harm_clock).find(key => (!harm_clock[key] && key <= currentHarm));
+        const harm_incr = Object.keys(harm_clock).find(key => (harm_clock[key] && key > currentHarm));
+        if (harm_decr)
+            expanded.system.harm.value = harm_decr - 1;
+        else if (harm_incr)
+            expanded.system.harm.value = harm_incr;
+        return expanded;
     }
-
-    /** @override */
-    async _updateObject(event, formData) {
-        const updateData = foundry.utils.expandObject(formData);
-        await this.actor.update(updateData);
-    }
-
-    /** @override */
-    async _onSubmit(event) {
-        event.preventDefault();
-        const updateData = this._getSubmitData();
-        await this.actor.update(updateData);
-    }
-
-    // /** @override */
-    // _getSubmitData(updateData = {}) {
-    //     const data = super._getSubmitData(updateData);
-
-    //     const currentHarm = this.object.system.harm.value;
-
-    //     // build harm clock as a dictionary
-    //     const harm_clock = {};
-    //     Object.keys(data).forEach(key => {
-    //         if (key.startsWith('system.harm_clock.'))
-    //             harm_clock[parseInt(key.replace('system.harm_clock.', ''))] = data[key];
-    //     });
-
-    //     // find checkbox that is unset and lower, or set and higher
-    //     const harm_decr = Object.keys(harm_clock).find(key => (!harm_clock[key] && key <= currentHarm));
-    //     const harm_incr = Object.keys(harm_clock).find(key => (harm_clock[key] && key > currentHarm));
-    //     if (harm_decr)
-    //         data['system.harm.value'] = harm_decr - 1;
-    //     else if (harm_incr)
-    //         data['system.harm.value'] = harm_incr;
-
-    //     return data;
-    // }
-
 
     /** @override */
     activateListeners(html) {
