@@ -2,10 +2,14 @@
 <section class="tab scrollable {{tabs.story.id}} {{tabs.story.cssClass}}" data-group="{{tabs.story.group}}" data-tab="{{tabs.story.id}}">
     <div class="flexrow">
         <label for="system.story.homeworld" class="resource-label">{{localize "interstitial.label.character_sheet.homeworld"}}:</label>
-        <input name="system.story.homeworld" type="text" value="{{system.story.homeworld}}" placeholder="{{localize "interstitial.label.character_sheet.homeworld_ph"}}" />
+        <input name="system.story.homeworld" type="text" value="{{document.system.story.homeworld}}" placeholder="{{localize "interstitial.label.character_sheet.homeworld_ph"}}" />
     </div>
     <h2> <label class="resource-label flexlarge" for="system.story.background">{{localize "interstitial.label.character_sheet.background"}}</label></h2>
-    <prose-mirror name="system.story.background" value="{{system.story.background}}" toggled>
-        {{system.story.background}}
-    </prose-mirror>
+    {{#if editable}}
+        <prose-mirror name="system.story.background" button="true" editable="{{editable}}" toggled="false" value="{{document.system.story.background}}">
+            {{{backgroundHTML}}}
+        </prose-mirror>
+    {{else}}
+        {{{backgroundHTML}}}
+    {{/if}}
 </section>

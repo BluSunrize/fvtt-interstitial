@@ -113,6 +113,14 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         // Establish roll modes for stat buttons
         context.system.roll_modifiers = Object.keys(ROLL_MODIFIERS).reduce((obj, x) => (obj[x] = `interstitial.roll_modifier.${x}`, obj), {});
 
+        // Enrich HTML content
+        context.adventureHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            this.document.system.story.adventure, { secrets: this.document.isOwner, relativeTo: this.document }
+        );
+        context.backgroundHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            this.document.system.story.background, { secrets: this.document.isOwner, relativeTo: this.document }
+        );
+
         // Inventory
         context.system.inventory = []
 

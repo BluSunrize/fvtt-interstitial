@@ -1,11 +1,11 @@
 <section class="tab scrollable flexcol {{tabs.links_stats.id}} {{tabs.links_stats.cssClass}}" data-group="{{tabs.links_stats.group}}" data-tab="{{tabs.links_stats.id}}">
     <section class="roll-modifiers flexrow">
         <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
-        <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
+        <input class="flex1" type="text" name="system.hold" value="{{document.system.hold}}" data-dtype="Number" />
         <span></span>
         <label for="system.roll_modifier" class="resource-label flex1">{{localize "interstitial.label.character_sheet.roll_modifier"}}:</label>
         <select name="system.roll_modifier">
-            {{selectOptions system.roll_modifiers selected=system.roll_modifier localize=true}}
+            {{selectOptions system.roll_modifiers selected=document.system.roll_modifier localize=true}}
         </select>
     </section>
     <br>
