@@ -16,12 +16,11 @@
             </div>
             <div class="flexrow flex1">
                 <label for="system.harm.value" class="resource-label flex1">{{localize "interstitial.label.character_sheet.harm"}}:</label>
-                <div class="harm-clock flexrow flex1">
+                <div class="harm-clock flexrow flex3">
                     {{#each system.harm_options as |harm_val|}}
                         <input type="checkbox" name="system.harm_clock.{{harm_val}}" {{checked (gte ../system.harm.value harm_val)}} />
                     {{/each}}
                 </div>
-                <div class="spacer flex2"></div>
             </div>
         </div>
     </header>
@@ -33,6 +32,7 @@
         <h3><a class="item" data-tab="story">{{localize "interstitial.label.character_sheet.story"}}</a></h3>
         <h3><a class="item" data-tab="adventure">{{localize "interstitial.label.character_sheet.adventure"}}</a></h3>
         <h3><a class="item" data-tab="inventory">{{localize "interstitial.label.character_sheet.inventory"}}</a></h3>
+        <h3><a class="item" data-tab="settings">{{localize "interstitial.label.character_sheet.settings"}}</a></h3>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -47,9 +47,6 @@
                 <select name="system.roll_modifier">
                     {{selectOptions system.roll_modifiers selected=system.roll_modifier localize=true}}
                 </select>
-                <span></span>
-                <label for="system.exploding_dice" class="resource-label flex1">{{localize "interstitial.label.character_sheet.exploding_dice"}}:</label>
-                <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked system.exploding_dice}} />
             </section>
             <br>
             <section class="link-moves flexcol">
@@ -229,7 +226,22 @@
                 </ul>
             </div>
         </div>
-
-
+        {{!-- Settings Tab --}}
+        <div class="tab settings flexrow" data-group="primary" data-tab="settings">
+            <div class="flexcol flex-group-center">
+                <div class="flexrow">
+                    <label for="system.exploding_dice" class="resource-label flex2">{{localize "interstitial.label.character_sheet.exploding_dice"}}:</label>
+                    <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked system.exploding_dice}} />
+                    <div class="spacer flex1"></div>
+                </div>
+            </div>
+            <div class="flexcol flex-group-center">
+                <div class="flexrow">
+                    <label for="system.harm.max" class="resource-label flex2">{{localize "interstitial.label.character_sheet.harm_clock_size"}}:</label>
+                    <input class="flex1" type="text" name="system.harm.max" value="{{system.harm.max}}" data-dtype="Number" />
+                    <div class="spacer flex1"></div>
+                </div>
+            </div>
+        </div>
     </section>
 </form>
