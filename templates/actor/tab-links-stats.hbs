@@ -36,7 +36,7 @@
     <section class="stats-and-links flexrow">
         {{#each statsAndLinks as |stat key|}}
         <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
-            <div class="stat-button flexrow flex-group-center rollable">
+            <div class="stat-button flexrow flex-group-center rollable" data-action="rollDice">
                 <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.svg" height="50" width="50"/>
                 <div class="flexcol">
                     <label class="resource-label flexlarge">{{localize (concat "interstitial.stat." key)}}</label>

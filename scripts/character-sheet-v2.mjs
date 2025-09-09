@@ -38,6 +38,7 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
             createItem: this.#createItem,
             deleteItem: this.#deleteItem,
             spendLink: this.#onSpendLink,
+            rollDice: this.#rollDice,
         }
     }
 
@@ -188,9 +189,6 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return;
 
-        // Rolling dice
-        html.on('click', '.rollable', this._onRoll.bind(this));
-
         // Spending a link
         html.on('click', '.roll-move', (ev) => {
             const li = $(ev.currentTarget).parents('.item');
@@ -239,31 +237,9 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         }
     }
 
-    _onRoll(event) {
-        event.preventDefault();
-        const element = $(event.currentTarget).find('[data-roll]')[0];
-        const dataset = element.dataset;
-
-        // Handle stat specific rolls
-        if (dataset.stat)
-            return this.actor.rollStat(dataset.stat);
-
-        // Handle other rolls that supply the formula directly
-        if (dataset.roll) {
-            let label = dataset.label ? `${dataset.label}` : '';
-            let roll = new Roll(dataset.roll, this.actor.getRollData());
-            roll.toMessage({
-                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                flavor: label,
-                rollMode: game.settings.get('core', 'rollMode'),
-            });
-            return roll;
-        }
-    }
-
     static #onSpendLink(event, target) {
         // event.preventDefault();
-        if(!this.isEditable)
+        if (!this.isEditable)
             return;
         const li = $(target).parents('.item.link');
         return this.actor.updateEmbeddedDocuments("Item", [{
@@ -311,6 +287,29 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         const item = this.actor.items.get(li.data('itemId'));
         item.delete();
         li.slideUp(200, () => this.render(false));
+    }
+
+    static #rollDice(_event, target) {
+        if (!this.isEditable)
+            return;
+        const element = $(target).find('[data-roll]')[0];
+        const dataset = element.dataset;
+
+        // Handle stat specific rolls
+        if (dataset.stat)
+            return this.actor.rollStat(dataset.stat);
+
+        // Handle other rolls that supply the formula directly
+        if (dataset.roll) {
+            let label = dataset.label ? `${dataset.label}` : '';
+            let roll = new Roll(dataset.roll, this.actor.getRollData());
+            roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: label,
+                rollMode: game.settings.get('core', 'rollMode'),
+            });
+            return roll;
+        }
     }
 
 }
