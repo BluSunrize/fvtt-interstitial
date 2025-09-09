@@ -1,6 +1,7 @@
 import { CharacterDataModel, ItemDataModel, LinkDataModel, MoveDataModel } from "./module/data-model.mjs";
 import { CharacterActor } from "./scripts/character-actor.mjs";
 import { CharacterActorSheet } from "./scripts/character-sheet.mjs";
+import { CharacterActorSheetV2 } from "./scripts/character-sheet-v2.mjs";
 import { InventoryItemSheet } from "./scripts/item-sheet.mjs";
 import { LinkItemSheet } from "./scripts/link-sheet.mjs";
 import { MoveItemSheet } from "./scripts/move-sheet.mjs";
@@ -61,6 +62,7 @@ Hooks.once("init", async function () {
     Actors.registerSheet('interstitial', CharacterActorSheet, {
         makeDefault: true,
     });
+    Actors.registerSheet('interstitial', CharacterActorSheetV2);
 
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('interstitial', MoveItemSheet, {

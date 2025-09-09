@@ -1,0 +1,88 @@
+<section class="tab scrollable flexcol {{tabs.links_stats.id}} {{tabs.links_stats.cssClass}}" data-group="{{tabs.links_stats.group}}" data-tab="{{tabs.links_stats.id}}">
+    <section class="roll-modifiers flexrow">
+        <label for="system.hold" class="resource-label flex1">{{localize "interstitial.label.character_sheet.hold"}}:</label>
+        <input class="flex1" type="text" name="system.hold" value="{{system.hold}}" data-dtype="Number" />
+        <span></span>
+        <label for="system.roll_modifier" class="resource-label flex1">{{localize "interstitial.label.character_sheet.roll_modifier"}}:</label>
+        <select name="system.roll_modifier">
+            {{selectOptions system.roll_modifiers selected=system.roll_modifier localize=true}}
+        </select>
+    </section>
+    <br>
+    <section class="link-moves flexcol">
+        <h3>{{localize "interstitial.label.character_sheet.link_moves"}}</h3>
+        <div class="link-moves flexcol flex-group-center">
+            <ul class="move-list flexcol flex-group-center">
+                {{#each system.link_moves as |move move_key|}}
+                <li class="item flexrow move flex1" data-item-id="{{move._id}}">
+                    <div class="flexcol flex12 move-desc">
+                        {{editor move.system.prompt target="move.system.prompt" owner=owner editable=false}}
+                    </div>
+                    <div class="item-controls flex1">
+                        <a class="item-control item-edit" title="{{localize "DOCUMENT.Edit" type=(localize "interstitial.move_type.link")}}"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="{{localize "DOCUMENT.Delete" type=(localize "interstitial.move_type.link")}}"><i class="fas fa-trash"></i></a>
+                    </div>
+                </li>
+                {{/each}}
+                <li class="item flexrow flex0 new-move">
+                    <div class="item-controls">
+                        <a class="item-control item-create" title="{{localize "DOCUMENT.Create" type=(localize "interstitial.move_type.link")}}" data-type="move" data-move_type="link"><i class='fas fa-plus'></i>{{localize 'DOCUMENT.New' type=(localize "interstitial.move_type.link")}}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <br>
+    <section class="stats-and-links flexrow">
+        {{#each system.statsAndLinks as |stat key|}}
+        <div class="stat-column {{key}} flexcol flex-group-center" data-stat="{{key}}">
+            <div class="stat-button flexrow flex-group-center rollable">
+                <img class="stat-img" src="systems/interstitial/assets/icons/stats/{{key}}.svg" height="50" width="50"/>
+                <div class="flexcol">
+                    <label class="resource-label flexlarge">{{localize (concat "interstitial.stat." key)}}</label>
+                    <span class="stat" data-roll="@base_dice + @stats.{{key}}" data-stat="{{key}}">
+                        {{numberFormat stat.value decimals=0 sign=true}}
+                    </span>
+                </div>
+            </div>
+
+            <ul class="link-list flexcol flex-group-center">
+                <li class="item flexrow flex0 new-link">
+                    <div class="item-controls">
+                        <a class="item-control item-create" title="{{localize "DOCUMENT.Create" type=(localize "TYPES.Item.link")}}" data-type="link" data-stat="{{key}}"><i class='fas fa-plus'></i>{{localize 'DOCUMENT.New' type=(localize "TYPES.Item.link")}}</a>
+                    </div>
+                </li>
+
+                {{#each stat.links as |link list_key|}}
+                <li class="item flexcol link flex1 {{ifThen link.system.spent 'spent' ''}}" data-item-id="{{link._id}}">
+                    <div class="link-container flexrow" style="flex-basis: 100%;">
+                        <div class="flexcol flex1">
+                            <img class="link-img" src="{{link.img}}" title="{{link.name}}" height="30" width="30"/>
+                            {{#if link.strength_icon}}
+                                <i class="link-strength fas fa-{{link.strength_icon}}" title="{{localize (concat "interstitial.link_strength." link.system.strength)}}"></i>
+                            {{/if}}
+                        </div>
+                        <div class="flexcol flex3">
+                            <label class="link-name">{{link.name}}</label>
+                            {{#if link.system.spent}}
+                                {{#if (eq link.system.strength "standard")}}
+                                    <span>{{localize "interstitial.label.character_sheet.link_spent_remove"}}</span>
+                                {{else}}
+                                    <span>{{localize "interstitial.label.character_sheet.link_spent"}}</span>
+                                {{/if}}
+                            {{else}}
+                                <a class="spend-link">{{localize "interstitial.label.character_sheet.link_spend"}}</a>
+                            {{/if}}
+                        </div>
+                        <div class="item-controls flex1">
+                            <a class="item-control item-edit" title="{{localize "DOCUMENT.Edit" type=(localize "TYPES.Item.link")}}"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="{{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.link")}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/each}}
+    </section>
+</section>
