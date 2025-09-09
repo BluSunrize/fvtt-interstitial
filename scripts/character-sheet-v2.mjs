@@ -39,6 +39,7 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
             deleteItem: this.#deleteItem,
             spendLink: this.#onSpendLink,
             rollDice: this.#rollDice,
+            rollMove: this.#rollMove,
         }
     }
 
@@ -189,14 +190,6 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return;
 
-        // Spending a link
-        html.on('click', '.roll-move', (ev) => {
-            const li = $(ev.currentTarget).parents('.item');
-            const item = this.actor.items.get(li.data('itemId'));
-            return this.actor.rollMove(item);
-        });
-
-
         // Drag events for macros.
         if (this.actor.isOwner) {
             let handler = ev => this._onDragStart(ev);
@@ -312,4 +305,11 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         }
     }
 
+    static #rollMove(_event, target) {
+        if (!this.isEditable)
+            return;
+        const li = $(target).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        return this.actor.rollMove(item);
+    }
 }

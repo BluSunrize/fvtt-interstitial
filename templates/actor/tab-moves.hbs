@@ -7,7 +7,7 @@
             {{#each basic_moves as |move move_key|}}
             <li class="item flexcol move flex1" data-item-id="{{move._id}}">
                 <div class="move-container flexrow" style="flex-basis: 100%;">
-                    <a class="roll-move flexcol flex1">
+                    <a class="roll-move flexcol flex1" data-action="rollMove">
                         <img class="move-img" src="{{move.img}}" title="{{move.name}}" height="50" width="50"/>
                         {{#if move.roll_icon}}
                             <img class="move-roll-img" src="{{move.roll_icon}}" title="Roll" height="30" width="30"/>
@@ -30,7 +30,7 @@
             {{#each playbook_moves as |move move_key|}}
             <li class="item flexcol move flex1" data-item-id="{{move._id}}">
                 <div class="move-container flexrow" style="flex-basis: 100%;">
-                    <a class="roll-move flexcol flex1">
+                    <a class="roll-move flexcol flex1" data-action="rollMove">
                         <img class="move-img" src="{{move.img}}" title="{{move.name}}" height="50" width="50"/>
                         {{#if move.roll_icon}}
                             <img class="move-roll-img" src="{{move.roll_icon}}" title="Roll" height="30" width="30"/>
