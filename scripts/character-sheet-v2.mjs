@@ -33,6 +33,12 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         form: {
             submitOnChange: true,
         },
+        actions: {
+            editItem: this.#editItem,
+            createItem: this.#createItem,
+            deleteItem: this.#deleteItem,
+            spendLink: this.#onSpendLink,
+        }
     }
 
     /** @inheritDoc */
@@ -178,34 +184,12 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
             return;
         super.activateListeners(html);
 
-        // Render the item sheet for viewing/editing prior to the editable check.
-        html.on('click', '.item-edit', (ev) => {
-            const li = $(ev.currentTarget).parents('.item');
-            const item = this.actor.items.get(li.data('itemId'));
-            item.sheet.render(true);
-        });
-
         // -------------------------------------------------------------
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return;
 
         // Rolling dice
         html.on('click', '.rollable', this._onRoll.bind(this));
-
-        // Add Inventory Item
-        html.on('click', '.item-create', this._onItemCreate.bind(this));
-
-        // Delete Inventory Item
-        html.on('click', '.item-delete', (ev) => {
-            const li = $(ev.currentTarget).parents('.item');
-            const item = this.actor.items.get(li.data('itemId'));
-            item.delete();
-            li.slideUp(200, () => this.render(false));
-        });
-
-        // Spending a link
-        html.on('click', '.spend-link', this._onSpendLink.bind(this));
-
 
         // Spending a link
         html.on('click', '.roll-move', (ev) => {
@@ -255,29 +239,6 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         }
     }
 
-    /** @override */
-    async _onItemCreate(event) {
-        event.preventDefault();
-        const header = event.currentTarget;
-        // Get the type of item to create.
-        const type = header.dataset.type;
-        // Grab any data associated with this control.
-        const data = duplicate(header.dataset);
-        // Remove the type from the dataset since it's in the itemData.type prop.
-        delete data["type"];
-        // Initialize a default name.
-        const name = `New ${type.capitalize()}`;
-        // Prepare the item object.
-        const itemData = {
-            name: name,
-            type: type,
-            system: data,
-        };
-
-        // Finally, create the item and show its sheet!
-        return Item.create(itemData, { parent: this.actor }).then(item => item.sheet.render(true));
-    }
-
     _onRoll(event) {
         event.preventDefault();
         const element = $(event.currentTarget).find('[data-roll]')[0];
@@ -300,13 +261,56 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
         }
     }
 
-    _onSpendLink(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents('.item.link');
+    static #onSpendLink(event, target) {
+        // event.preventDefault();
+        if(!this.isEditable)
+            return;
+        const li = $(target).parents('.item.link');
         return this.actor.updateEmbeddedDocuments("Item", [{
             '_id': li.data('itemId'),
             'system.spent': true,
         }]);
+    }
+
+
+    // Render the item sheet for viewing/editing prior to the editable check.
+    static #editItem(_event, target) {
+        const li = $(target).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        item.sheet.render(true);
+    }
+
+    // Add Inventory Item
+    static #createItem(_event, target) {
+        if (!this.isEditable)
+            return;
+        const header = target;
+        // Get the type of item to create.
+        const type = header.dataset.type;
+        // Grab any data associated with this control.
+        const data = duplicate(header.dataset);
+        // Remove the type from the dataset since it's in the itemData.type prop.
+        delete data["type"];
+        // Initialize a default name.
+        const name = `New ${type.capitalize()}`;
+        // Prepare the item object.
+        const itemData = {
+            name: name,
+            type: type,
+            system: data,
+        };
+        // Finally, create the item and show its sheet!
+        return Item.create(itemData, { parent: this.actor }).then(item => item.sheet.render(true));
+    }
+
+    // Delete Inventory Item
+    static #deleteItem(_event, target) {
+        if (!this.isEditable)
+            return;
+        const li = $(target).parents('.item');
+        const item = this.actor.items.get(li.data('itemId'));
+        item.delete();
+        li.slideUp(200, () => this.render(false));
     }
 
 }
