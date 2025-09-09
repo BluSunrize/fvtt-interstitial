@@ -13,6 +13,11 @@
 .system-interstitial .sheet.actor header img.profile-img {
     max-width: 150px;
     height: auto;
+    margin-right: 1rem;
+}
+
+.system-interstitial .sheet.actor header input[name="name"] {
+    height: var(--font-h1-size);
 }
 
 .system-interstitial .sheet.actor nav.sheet-tabs {
@@ -28,22 +33,28 @@
 }
 
 .system-interstitial .sheet.actor .tab.links section.roll-modifiers,
-.system-interstitial .sheet.actor .tab.links section.link-moves {
+.system-interstitial .sheet.actor .tab.links section.link-moves,
+.system-interstitial .sheet.actor .tab.links_stats section.roll-modifiers,
+.system-interstitial .sheet.actor .tab.links_stats section.link-moves {
     flex-grow: 0;
 }
 
+.system-interstitial .sheet.actor .stats-and-links {
+    align-items: start;
+}
+
 .system-interstitial .sheet.actor .stat-column {
-    border: 1px solid var(--color-border-light-tertiary);
+    border: 1px solid var(--color-border);
     border-radius: 3px;
+    margin: 0 2px;
 }
 
 .system-interstitial .sheet.actor .stat-column .stat-button {
-    background: var(--color-light-2);
-    border: 1px solid var(--color-border-dark-tertiary);
+    background: var(--table-header-bg-color);
+    border: 1px solid var(--color-border);
     border-radius: 3px;
-    margin: auto;
     justify-content: center;
-    margin: 0 15px;
+    margin: 5px 5px;
     max-height: 50px
 }
 
@@ -73,11 +84,11 @@
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link.spent {
-    color: var(--color-text-dark-inactive);
+    color: var(--color-text-subtle);
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link:not(.spent) a.spend-link {
-    color: var(--color-text-hyperlink);
+    color: var(--color-text-accent);
 }
 
 .system-interstitial .sheet.actor .stat-column .link-list li.link i.link-strength {
@@ -96,6 +107,10 @@
     justify-content: right;
 }
 
+.system-interstitial .sheet.actor .tab.moves {
+    align-items: start;
+}
+
 .system-interstitial .sheet.actor .move-list li.move {
     align-content: center;
     flex-grow: 0;
@@ -104,6 +119,7 @@
 .system-interstitial .sheet.actor .move-list .move-img {
     flex-grow: unset;
     margin-right: 5px;
+    border: 1px solid var(--color-fieldset-border);
 }
 
 .system-interstitial .sheet.actor .move-list .move-roll-img {
@@ -111,7 +127,8 @@
     position: relative;
     bottom: 22px;
     left: 36px;
-    background: var(--color-bg-btn-minor-active);
+    background: var(--table-header-bg-color);
+    border: 1px solid var(--color-fieldset-border);
 }
 
 .system-interstitial .sheet.actor .move-list li.new-move {
