@@ -1,3 +1,21 @@
+@layer variables.base {
+    body {
+        --font-h2: "Signika", "Palatino Linotype", sans-serif;
+        --font-h3: "Signika", "Palatino Linotype", sans-serif;
+        --font-h4: "Signika", "Palatino Linotype", sans-serif;
+        --font-h5: "Signika", "Palatino Linotype", sans-serif;
+    }
+}
+
+@layer elements.typography {
+
+    h3,
+    h4 {
+        font-weight: normal;
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
 .system-interstitial .item-controls .item-control.item-edit .system-interstitial .item-controls .item-control.item-delete {
     margin: 0 5%;
 }
@@ -149,7 +167,7 @@
     margin: 0;
     flex-grow: 0;
     font-size: 1.1em;
-    border-bottom: 1px solid var(--color-underline-inactive);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .system-interstitial .sheet.item header {
