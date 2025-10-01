@@ -26,6 +26,7 @@
 
 .system-interstitial .sheet.actor .tab {
     height: 100%;
+    align-items: normal;
 }
 
 .system-interstitial .sheet.actor .tab .editor.prosemirror {

@@ -1,6 +1,14 @@
-<section class="tab scrollable {{tabs.settings.id}} {{tabs.settings.cssClass}}" data-group="{{tabs.settings.group}}" data-tab="{{tabs.settings.id}}">
-    <label for="system.exploding_dice" class="resource-label flex1">{{localize "interstitial.label.character_sheet.exploding_dice"}}:</label>
-    <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked document.system.exploding_dice}} />
-    <label for="system.harm.max" class="resource-label flex1">{{localize "interstitial.label.character_sheet.harm_clock_size"}}:</label>
-    <input class="flex1" type="text" name="system.harm.max" value="{{document.system.harm.max}}" data-dtype="Number" />
+<section class="tab scrollable flexrow {{tabs.settings.id}} {{tabs.settings.cssClass}}" data-group="{{tabs.settings.group}}" data-tab="{{tabs.settings.id}}">
+    <div class="flexcol">
+        <div class="flexrow">
+            <label for="system.exploding_dice" class="resource-label flex1">{{localize "interstitial.label.character_sheet.exploding_dice"}}:</label>
+            <input class="flex1" type="checkbox" name="system.exploding_dice" {{checked document.system.exploding_dice}} />
+        </div>
+    </div>
+    <div class="flexcol">
+        <div class="flexrow">
+            <label for="system.harm.max" class="resource-label flex1">{{localize "interstitial.label.character_sheet.harm_clock_size"}}:</label>
+            <input class="flex1" type="text" name="system.harm.max" value="{{document.system.harm.max}}" data-dtype="Number" />
+        </div>
+    </div>
 </section>

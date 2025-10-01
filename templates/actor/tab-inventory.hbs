@@ -4,10 +4,10 @@
             {{#each inventory as |item|}}
             <li class="item draggable flexrow move flex1" data-item-id="{{item._id}}">
                 <div class="item-container flexrow" style="flex-basis: 100%;">
-                    <div class="flexcol flex1">
+                    <div class="flex1">
                         <img class="item-img" src="{{item.img}}" title="{{item.name}}" height="30" width="30"/>
                     </div>
-                    <div class="flexcol flex3">
+                    <div class="flex12">
                         <label class="item-name">{{item.name}}</label>
                     </div>
                     <div class="item-controls flex1">
