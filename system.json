@@ -5,7 +5,7 @@
   "url": "https://github.com/BluSunrize/fvtt-interstitial",
   "manifest": "https://github.com/BluSunrize/fvtt-interstitial/releases/latest/download/system.json",
   "download": "https://github.com/BluSunrize/fvtt-interstitial/releases/latest/download/system.zip",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "compatibility": {
     "minimum": "12",
     "verified": "13.348"

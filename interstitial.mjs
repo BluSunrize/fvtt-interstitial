@@ -59,10 +59,10 @@ Hooks.once("init", async function () {
 
     // Configure sheets
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('interstitial', CharacterActorSheet, {
+    Actors.registerSheet('interstitial', CharacterActorSheet);
+    Actors.registerSheet('interstitial', CharacterActorSheetV2, {
         makeDefault: true,
     });
-    Actors.registerSheet('interstitial', CharacterActorSheetV2);
 
     Items.unregisterSheet('core', ItemSheet);
     Items.registerSheet('interstitial', MoveItemSheet, {
