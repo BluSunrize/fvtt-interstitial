@@ -71,11 +71,17 @@
 
 .system-interstitial .sheet.actor .stat-column .stat-button {
     background: var(--table-header-bg-color);
-    border: 1px solid var(--color-border);
     border-radius: 3px;
     justify-content: center;
+    text-align: start;
     margin: 5px 5px;
-    max-height: 50px
+    height: fit-content;
+    max-height: 50px;
+    border: 1px solid var(--color-border);
+}
+
+.system-interstitial .sheet.actor .stat-column .stat-button:hover {
+    border-color: var(--button-hover-text-color);
 }
 
 .system-interstitial .sheet.actor .stat-column .stat-button .stat-img {
