@@ -32,6 +32,7 @@
     max-width: 150px;
     height: auto;
     margin-right: 1rem;
+    cursor: var(--cursor-pointer);
 }
 
 .system-interstitial .sheet.actor header input[name="name"] {
