@@ -203,7 +203,7 @@ export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheet
             if (sameActor && !isCopying)
                 return this._onSortItem(event, item);
         } else {
-            return this._onDropItemCreate(item);
+            return Item.create(item.toObject(), { parent: this.actor });
         }
     }
 
