@@ -5,21 +5,6 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 export class CharacterActorSheetV2 extends HandlebarsApplicationMixin(ActorSheetV2) {
 
-    /** @override */
-    // static get defaultOptions() {
-    //     return foundry.utils.mergeObject(super.defaultOptions, {
-    //         classes: ["interstitial", "sheet", "actor"],
-    //         template: "systems/interstitial/templates/actor/character-sheet.hbs",
-    //         width: 800,
-    //         height: 600,
-    //         tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "links" }],
-    //         dragDrop: [
-    //             { dragSelector: '.item.link', dropSelector: '.link-list' },
-    //             { dragSelector: '.item.move', dropSelector: '.move-list' },
-    //         ],
-    //     });
-    // }
-
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ["interstitial", "sheet", "actor"],
